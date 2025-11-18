@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>::Sistem Informasi STMIK Time::</title>
+    <h:outputStylesheet library="css" name="primeflex.min.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+</h:head>
+<h:body>
+    <h:form id="form_messages">
+        <p:growl id="messages" showDetail="true" showSummary="true"/>
+    </h:form>
+    <div id="container-luar" class="fixed w-full h-full top-0 left-0">
+        <div id="container-dalam" class="flex bg-white h-full w-full">
+            <div id="container-navigator" class="bg-cover m-1 w-15rem border-round shadow-4">
+                <!--sidebar disini-->
+                <ui:insert name="sidebar">
+                    <ui:include src="/mahasiswa/templates/sidebar.xhtml"/>
+                </ui:insert>
+            </div>
+            <div id="container-main" class="flex flex-column bg-white w-full m-1">
+                <div id="container-header"
+                     class="flex bg-blue-200 align-items-center pl-2 h-4rem mb-1 border-round shadow-4">
+                    <!--Header disini-->
+                    <ui:insert>
+                        <ui:include src="/mahasiswa/templates/header.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div id="container-content"
+                     class="flex flex-column flex-wrap bg-white p-2 h-full overflow-y-auto shadow-4 border-round">
+                    <!--content disini-->
+                    <h:form id="form_pam">
+                        <p:remoteCommand action="#{pamBean.findAllPamByUserId(sessionBean.id)}" update="dt_pam"
+                                         autoRun="true"/>
+                        <!--<p:remoteCommand action="#{kategoriPamBean.findAllKategoriPam()}" update="form_tambahpam"
+                                         autoRun="true"/>-->
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton id="btn_new" value="Tambah" icon="pi pi-plus"
+                                                 action="#{pamBean.openNew()}"
+                                                 styleClass="ui-button-success"
+                                                 oncomplete="PF('dialog_tambahpam').show()"
+                                                 process="@this" update="form_tambahpam"/>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                        <p:dataTable id="dt_pam" value="#{pamBean.pams}" var="pam" rowIndexVar="idx"
+                                     selection="#{pamBean.selectedPam}" rowKey="#{pam.id}" widgetVar="wpam"
+                                     tableStyle="width: 100%; table-layout: auto;"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                        {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,25,50,100,250,500,{ShowAll|'All'}"
+                                     paginatorPosition="bottom" paginator="true" reflow="true"
+                                     stripedRows="true" rows="25" selectionMode="single" sortMode="single"
+                                     globalFilterOnly="true">
+                            <f:facet name="header">
+                                <div class="flex justify-content-between align-items-center">
+                                    <p:outputLabel value="Poin Aktifitas Mahasiswa (PAM)" styleClass="font-bold"/>
+                                    <div>
+                                        <p:commandButton id="btn_kolom" type="button"
+                                                         value="Kolom" icon="pi pi-align-justify"/>
+                                        <p:columnToggler trigger="btn_kolom" datasource="dt_pam"/>
+
+                                        <span class="icon ui-input-icon-left">
+                                            <i class="pi pi-search"/>
+                                            <p:inputText id="globalFilter" placeholder="Search"
+                                                         onkeyup="PF('wpam').filter()"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </f:facet>
+                            <f:facet name="footer">
+                                <p:outputLabel value="Total poin: #{pamBean.sumTotalPoin()} of 42"/>
+                            </f:facet>
+                            <p:column headerText="No">
+                                <p:outputLabel value="#{idx+1}"/>
+                            </p:column>
+                            <p:column headerText="Aktifitas"
+                                      sortBy="#{pam.namaAktifitas}"
+                                      filterBy="#{pam.namaAktifitas}">
+                                <p:outputLabel value="#{pam.namaAktifitas}"/>
+                            </p:column>
+                            <p:column headerText="Kategori"
+                                      sortBy="#{pam.kategoriPam.kategori}"
+                                      filterBy="#{pam.kategoriPam.kategori}">
+                                <p:outputLabel value="#{pam.kategoriPam.kategori}"/>
+                            </p:column>
+                            <p:column headerText="Status"
+                                      sortBy="#{pam.status}"
+                                      filterBy="#{pam.status}">
+                                <p:outputLabel value="#{pam.status}" converter="#{statusPamConverter}"/>
+                            </p:column>
+                            <p:column headerText="Keterangan"
+                                      sortBy="#{pam.keterangan}"
+                                      filterBy="#{pam.keterangan}">
+                                <p:outputLabel value="#{pam.keterangan}"/>
+                            </p:column>
+                            <p:column headerText="Poin">
+                                <p:outputLabel value="#{pam.poin}"/>
+                            </p:column>
+                            <p:column headerText="Aksi">
+                                <p:commandButton icon="pi pi-pencil" resetValues="true"
+                                                 styleClass="rounded-button ui-button-warning mr-1"
+                                                 action="#{pamBean.edit()}" update="form_tambahpam"
+                                                 oncomplete="PF('dialog_tambahpam').show()">
+                                    <f:setPropertyActionListener target="#{pamBean.selectedPam}" value="#{pam}"/>
+                                </p:commandButton>
+                                <p:commandButton icon="pi pi-trash" styleClass="rounded-button ui-button-danger"
+                                                 action="#{pamBean.delete()}"
+                                                 update="form_messages:messages form_pam:dt_pam">
+                                    <p:confirm header="Konfirmasi" message="Apakah kamu yakin akan menghapus pam?"
+                                               icon="pi pi-info-circle"/>
+                                    <f:setPropertyActionListener target="#{pamBean.selectedPam}"
+                                                                 value="#{pam}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <p:confirmDialog global="true">
+                            <p:commandButton value="No" type="button" styleClass="ui-button-flat ui-confirmdialog-no"/>
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"/>
+                        </p:confirmDialog>
+                    </h:form>
+
+                    <p:dialog header="tambah pam" showEffect="fade" modal="true" style="min-width: 900px"
+                              widgetVar="dialog_tambahpam" fitViewport="true" appendTo="@(body)"
+                              responsive="true">
+                        <h:form id="form_tambahpam" enctype="multipart/form-data">
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-3 p-1,ui-grid-col-9 p-1"
+                                         layout="grid">
+                                <p:outputLabel value="Kategori" for="@next"/>
+                                <p:selectOneMenu value="#{pamBean.selectedPam.kategoriPam.id}" styleClass="w-full"
+                                                 required="true" requiredMessage="Pilih kategori pam">
+                                    <p:ajax event="valueChange" update="num_poin"
+                                            listener="#{pamBean.updateKategoriPamPoin()}"/>
+                                    <f:selectItem itemValue="#{null}" itemLabel="--pilih kategori--"
+                                                  itemDisabled="true"/>
+                                    <f:selectItems value="#{kategoriPamBean.findAllKategoriPam()}" var="kategori"
+                                                   itemValue="#{kategori.id}" itemLabel="#{kategori.kategori}"
+                                                   itemDescription="#{kategori.kelompok}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Aktifitas" for="@next"/>
+                                <p:inputTextarea value="#{pamBean.selectedPam.namaAktifitas}" styleClass="w-full"
+                                                 required="true" requiredMessage="Pilih nama aktifitas"
+                                                 placeholder="Masukan nama aktifitas secara lengkap disertai tempat dan tanggal pelaksanaannya"/>
+
+                                <p:outputLabel value="Poin" for="@next"/>
+                                <p:inputNumber id="num_poin" value="#{pamBean.selectedPam.poin}" styleClass="w-full"
+                                               disabled="true"/>
+
+                                <p:outputLabel value="Unggah berkas (.pdf)"/>
+                                <p:fileUpload id="file_berkas" mode="simple" requiredMessage="Pilih berkas"
+                                              required="#{pamBean.berkasRequired}"
+                                              skinSimple="true" label="Browse" value="#{pamBean.dokumen}"
+                                              accept=".pdf" displayFilename="true">
+                                    <p:validateFile allowTypes="/(\.|\/)(pdf)$/"
+                                                    sizeLimit="#{initParam['sistime.size_limit']}"/>
+                                </p:fileUpload>
+
+                                <p:row>
+                                    <p:column styleClass="ui-grid-col-12 text-right">
+                                        <p:commandButton value="Simpan" icon="pi pi-save"
+                                                         action="#{pamBean.simpan()}"
+                                                         styleClass="mr-2 ui-button-outlined"
+                                                         update="form_messages form_pam:dt_pam"
+                                                         oncomplete="PF('dialog_tambahpam').hide()"/>
+                                        <p:commandButton value="Reset" icon="pi pi-replay"
+                                                         process="@this" update="form_tambahpam"
+                                                         action="#{pamBean.resetSelectedPam()}"/>
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </h:form>
+                    </p:dialog>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

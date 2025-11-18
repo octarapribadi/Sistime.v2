@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>::Sistem Informasi STMIK Time::</title>
+    <h:outputStylesheet library="css" name="primeflex.min.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+</h:head>
+<h:body>
+    <h:form id="form_messages">
+        <p:growl id="messages" showDetail="true" showSummary="true"/>
+    </h:form>
+    <div id="container-luar" class="fixed w-full h-full top-0 left-0">
+        <div id="container-dalam" class="flex bg-white h-full w-full">
+            <div id="container-navigator" class="bg-cover m-1 w-15rem border-round shadow-4">
+                <!--sidebar disini-->
+                <ui:insert name="sidebar">
+                    <ui:include src="../templates/sidebar.xhtml"/>
+                </ui:insert>
+            </div>
+            <div id="container-main" class="flex flex-column bg-white w-full m-1">
+                <div id="container-header"
+                     class="flex bg-blue-200 align-items-center pl-2 h-4rem mb-1 border-round shadow-4">
+                    <!--Header disini-->
+                    <ui:insert>
+                        <ui:include src="../templates/header.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div id="container-content"
+                     class="flex bg-white pl-2 pt-2 pr-2 h-full overflow-y-auto shadow-4 border-round">
+                    <!--content disini-->
+
+                    <h:form id="form_dokumen">
+                        <!--<p:outputPanel>-->
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton id="btn_new" value="New" icon="pi pi-plus"
+                                                 action="#{uploadDokumenBean.openNew()}"
+                                                 styleClass="ui-button-success mr-2"
+                                                 oncomplete="PF('dialog_form_add').show()"
+                                                 process="@this" update=":form_add:panel_add">
+                                    <p:resetInput target=":form_add:panel_add"/>
+                                </p:commandButton>
+                                <p:commandButton id="btn_delete" value="#{uploadDokumenBean.btnDeleteValue}"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" action="#{uploadDokumenBean.deletes}"
+                                                 disabled="false" update="@this">
+                                    <p:confirm header="Konfirmasi" message="Apakah yakin akan dihapus?"
+                                               icon="pi pi-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                        <p:dataTable id="dt_dokumen" var="dokumen" resizableColumns="true"
+                                     selection="#{uploadDokumenBean.selectedDokumens}" paginator="true"
+                                     paginatorPosition="bottom"
+                                     rowSelectMode="add" reflow="true" rowKey="#{dokumen.id}"
+                                     value="#{uploadDokumenBean.findDokumenByUserId()}"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                         {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                     rowsPerPageTemplate="5,10,25,50,100,{ShowAll|'All'}">
+                            <p:ajax event="rowSelect" update="form_dokumen:btn_delete"/>
+                            <p:ajax event="rowUnselect" update="form_dokumen:btn_delete"/>
+                            <p:ajax event="rowSelectCheckbox" update="form_dokumen:btn_delete"/>
+                            <p:ajax event="rowUnselectCheckbox" update="form_dokumen:btn_delete"/>
+                            <p:ajax event="toggleSelect" update="form_dokumen:btn_delete"/>
+
+                            <p:column selectionMode="multiple" styleClass="w-1rem" exportable="false"/>
+                            <p:column headerText="Tanggal">
+                                <p:outputLabel value="#{dokumen.tanggal}"/>
+                            </p:column>
+                            <p:column headerText="Jenis Dokumen">
+                                <p:outputLabel value="#{dokumen.jenisDokumen.jenisDokumen}"/>
+                            </p:column>
+                            <p:column headerText="Keterangan">
+                                <p:outputLabel value="#{dokumen.keterangan}"/>
+                            </p:column>
+                            <p:column headerText="Dokumen">
+                                <p:commandButton value="Download" ajax="false">
+                                    <p:fileDownload value="#{uploadDokumenBean.download(dokumen.url)}"/>
+                                </p:commandButton>
+                            </p:column>
+                            <p:column headerText="Proses">
+                                <p:commandButton icon="pi pi-pencil" oncomplete="PF('dialog_form_add').show()"
+                                                 styleClass="mr-2 rounded-button ui-button-success"
+                                                 update=":form_add:panel_add" action="#{uploadDokumenBean.edit()}">
+                                    <f:setPropertyActionListener target="#{uploadDokumenBean.selectedDokumen}"
+                                                                 value="#{dokumen}"/>
+                                </p:commandButton>
+                                <p:commandButton icon="pi pi-trash" styleClass="ui-button-warning rounded-button"
+                                                 action="#{uploadDokumenBean.delete()}" update="dt_dokumen">
+                                    <p:confirm header="Konfirmasi" message="Apakah kamu yakin akan menghapus dokumen?"
+                                               icon="pi pi-info-circle"/>
+                                    <f:setPropertyActionListener target="#{uploadDokumenBean.selectedDokumen}"
+                                                                 value="#{dokumen}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                        <!--</p:outputPanel>-->
+                        <p:confirmDialog global="true">
+                            <p:commandButton value="No" type="button" styleClass="ui-button-flat ui-confirmdialog-no"/>
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"/>
+                        </p:confirmDialog>
+                    </h:form>
+
+
+                    <h:form id="form_add" enctype="multipart/form-data">
+                        <p:dialog header="Dokumen Baru" responsive="true" widgetVar="dialog_form_add"
+                                  showEffect="fade" style="min-width: 600px" modal="true" appendTo="@(body)">
+                            <p:outputPanel id="panel_add">
+                                <p:panelGrid columns="2" styleClass="ui-noborder"
+                                             columnClasses="ui-grid-col-4 p-1,ui-grid-col-8 p-1">
+                                    <p:outputLabel for="@next" value="Tanggal"/>
+                                    <p:inputText type="date" id="txt_tanggal"
+                                                 value="#{uploadDokumenBean.selectedDokumen.tanggal}"
+                                                 converter="dateConverter" styleClass="w-full" required="true"
+                                                 requiredMessage="silahkan pilih tanggal"/>
+
+                                    <p:outputLabel for="@next" value="Jenis Dokumen"/>
+                                    <p:selectOneMenu id="menu_jenisdokumen" styleClass="w-full"
+                                                     value="#{uploadDokumenBean.selectedDokumen.jenisDokumen.id}"
+                                                     required="true" requiredMessage="silahkan pilih jenis dokumen">
+                                        <f:selectItem itemLabel="--silahkan pilih--" itemValue="#{null}"/>
+                                        <f:selectItems value="#{uploadDokumenBean.jenisDokumens}" var="jd"
+                                                       itemLabel="#{jd.jenisDokumen}" itemValue="#{jd.id}"/>
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="@next" value="Keterangan"/>
+                                    <p:inputTextarea id="txt_keterangan"
+                                                     value="#{uploadDokumenBean.selectedDokumen.keterangan}"
+                                                     styleClass="w-full"/>
+
+                                    <h:outputText value="Dokumen"/>
+                                    <p:fileUpload mode="simple" id="btn_upload" skinSimple="true" label="Browse"
+                                                  value="#{uploadDokumenBean.uploadedFile}" required="true"
+                                                  allowTypes="/(\.|\/)(pdf|jpg|jpeg|png)$/" invalidFileMessage="pilih file pdf, jpg atau png"
+                                                  sizeLimit="#{initParam['sistime.size_limit']}"
+                                                  invalidSizeMessage="maksimal #{initParam['sistime.size_limit']/1024/1024} MB"
+                                                  accept=".pdf,.jpg,.jpeg,.png"/>
+
+                                    <p:outputLabel/>
+                                    <p:columnGroup>
+                                        <p:commandButton id="btn_submit" value="Submit"
+                                                         styleClass="mr-1 ui-button-outlined"
+                                                         ajax="false" action="#{uploadDokumenBean.persist()}"/>
+                                        <p:commandButton id="btn_cancel" value="Cancel" update="panel_add"
+                                                         process="@this"
+                                                         oncomplete="PF('dialog_form_add').hide()">
+                                            <p:resetInput target="panel_add"/>
+                                        </p:commandButton>
+                                    </p:columnGroup>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>::Sistem Informasi STMIK Time::</title>
+    <h:outputStylesheet library="css" name="primeflex.min.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+</h:head>
+<h:body>
+    <h:form id="form_messages">
+        <p:growl id="messages" showDetail="true" showSummary="true"/>
+    </h:form>
+    <div id="container-luar" class="fixed w-full h-full top-0 left-0">
+        <div id="container-dalam" class="flex bg-white h-full w-full">
+            <div id="container-navigator" class="bg-cover m-1 w-15rem border-round shadow-4">
+                <!--sidebar disini-->
+                <ui:insert name="sidebar">
+                    <ui:include src="/admin/templates/sidebar.xhtml"/>
+                </ui:insert>
+            </div>
+            <div id="container-main" class="flex flex-column bg-white w-full m-1">
+                <div id="container-header"
+                     class="flex bg-blue-200 align-items-center pl-2 h-4rem mb-1 border-round shadow-4">
+                    <!--Header disini-->
+                    <ui:insert>
+                        <ui:include src="/admin/templates/header.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div id="container-content"
+                     class="flex flex-column bg-white p-2 h-full overflow-y-auto shadow-4 border-round">
+                    <!--content disini-->
+                    <h:form>
+                        <h:outputText styleClass="font-bold text-2xl" value="Lihat KHS Mahasiswa"/>
+                        <p:panelGrid columns="3" columnClasses="col-4 p-2,col-7 p-2,col-1 p-2" layout="flex"
+                                     styleClass="w-30rem">
+                            <h:outputText value="Masukan Nim:"/>
+                            <p:inputText value="#{khsBean.nim}" styleClass="w-full"/>
+                            <p:commandButton value="Cari" icon="pi pi-search"/>
+                        </p:panelGrid>
+                    </h:form>
+
+                    <!--
+                    <h:form id="form_nilai">
+                        <p:dataTable id="dt_khs" rowIndexVar="idx" editable="true" editMode="cell" widgetVar="_nilai"
+                                     var="nilai" value="#{nilaiBean.mahasiswaNilais}" stripedRows="true"
+                                     resizableColumns="true" resizeMode="fit" rowKey="#{nilai.krsMahasiswa.id}"
+                                     selectionMode="single"
+                                     rowStyleClass="#{nilai.krsMahasiswa != null?null:'bg-red-100'}">
+                            <p:ajax event="cellEdit" listener="#{nilaiBean.toeng2}"/>
+                            <f:facet name="header">
+                                <h:outputText value="Tabel Nilai kelas #{nilaiBean.selectedKelas.kodeKelas}"
+                                              styleClass="text-2xl font-bold"/>
+                                <h:outputText value=" - Mata kuliah: #{nilaiBean.selectedMataKuliah.namaMatakuliah}"
+                                              styleClass="text-2xl font-bold"/>
+                                <h:outputText value="[#{nilaiBean.selectedMataKuliah.kodeMatakuliah}]"
+                                              styleClass="text-2xl font-bold"/>
+                            </f:facet>
+                            <p:column headerText="No" styleClass="p-1 w-2rem">
+                                <h:outputText value="#{idx+1}"/>
+                            </p:column>
+                            <p:column headerText="NIM" styleClass="p-1 w-5rem">
+                                <h:outputText value="#{nilai.nim}"/>
+                            </p:column>
+                            <p:column headerText="Nama Mahasiswa" styleClass="p-1 w-18rem">
+                                <h:outputText value="#{nilai.namaMahasiswa}"/>
+                            </p:column>
+                            <p:column headerText="Absensi" styleClass="p-1">
+                                <p:cellEditor disabled="#{nilai.krsMahasiswa == null}">
+                                    <f:facet name="output">
+                                        <h:outputText value="#{nilai.absensi}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputNumber id="txt_absensi" value="#{nilai.absensi}" decimalPlaces="2"
+                                                       inputStyleClass="w-4rem" emptyValue="empty"
+                                                       minValue="0" maxValue="100"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Tugas" styleClass="p-1">
+                                <p:cellEditor disabled="#{nilai.krsMahasiswa == null}">
+                                    <f:facet name="output">
+                                        <h:outputText value="#{nilai.tugas}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputNumber value="#{nilai.tugas}" decimalPlaces="2"
+                                                       inputStyleClass="w-4rem" emptyValue="empty"
+                                                       minValue="0" maxValue="100"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="UTS" styleClass="p-1">
+                                <p:cellEditor disabled="#{nilai.krsMahasiswa == null}">
+                                    <f:facet name="output">
+                                        <h:outputText value="#{nilai.uts}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputNumber value="#{nilai.uts}" decimalPlaces="2"
+                                                       inputStyleClass="w-4rem" emptyValue="empty"
+                                                       minValue="0" maxValue="100"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="UAS" styleClass="p-1">
+                                <p:cellEditor disabled="#{nilai.krsMahasiswa == null}">
+                                    <f:facet name="output">
+                                        <h:outputText value="#{nilai.uas}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputNumber value="#{nilai.uas}" decimalPlaces="2"
+                                                       inputStyleClass="w-4rem" emptyValue="empty"
+                                                       minValue="0" maxValue="100"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Keterangan" styleClass="p-1 w-10rem">
+                                <p:cellEditor disabled="#{nilai.krsMahasiswa == null}">
+                                    <f:facet name="output">
+                                        <h:outputText value="#{nilai.keterangan}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:inputText value="#{nilai.keterangan}" styleClass="w-full" maxlength="255"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

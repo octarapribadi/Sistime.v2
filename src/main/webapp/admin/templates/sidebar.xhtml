@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id="form_gambarprofil">
+        <div style="display: flex; justify-content: center; margin: 3px;">
+            <p:graphicImage value="#{gambarProfilBean.pp}" stream="false"
+                            style="border-radius: 15px;padding:5px; width:60%"
+                            alt="profil" id="img_profile" onclick="PF('dialog_form_profile').show()"/>
+        </div>
+    </h:form>
+    <h:form id="form_uploadprofile" enctype="multipart/form-data">
+        <p:dialog header="Ubah Foto Profil" responsive="true" widgetVar="dialog_form_profile"
+                  modal="true" appendTo="@(body)">
+            <p:outputPanel id="panel_profile">
+                <p:fileUpload label="pilih foto" listener="#{gambarProfilBean.handleGambarProfil}"
+                              multiple="false" update=":form_gambarprofil:img_profile :form_messages:messages"
+                              allowTypes="/(\.|\/)(jpg|jpeg|png)$/" invalidFileMessage="pilih format jpg atau png"
+                              sizeLimit="#{initParam['sistime.size_limit']}"
+                              invalidSizeMessage="maksimal #{initParam['sistime.size_limit']/1024/1024} MB"
+                              accept=".jpg,.jpeg,.png"/>
+
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
+    <p:tieredMenu styleClass="w-full border-0 bg-gray-100">
+        <p:menuitem value="Home" icon="pi pi-home" url="/admin/"/>
+        <p:submenu label="Data Master" icon="pi pi-database">
+            <p:menuitem value="Tahun Ajaran" icon="pi pi-calendar" url="/admin/master-data/tahunajaran.xhtml"/>
+            <p:menuitem value="Mahasiswa" icon="pi pi-user" url="/admin/master-data/profile_mahasiswa.xhtml"/>
+            <p:menuitem value="Kelas" icon="pi pi-table" url="/admin/master-data/kelas.xhtml"/>
+            <p:menuitem value="Dosen" icon="pi pi-user" url="/admin/master-data/dosen.xhtml"/>
+            <p:menuitem value="Mata Kuliah" icon="pi pi-book" url="/admin/master-data/matakuliah.xhtml"/>
+            <p:menuitem value="Status Mhs" icon="pi pi-id-card" url="/admin/master-data/status_mahasiswa.xhtml"/>
+            <p:menuitem value="Sekolah" icon="pi pi-home" url="/admin/master-data/sekolah.xhtml"/>
+        </p:submenu>
+        <p:submenu label="Kelola Data" icon="pi pi-users">
+            <p:menuitem value="Verif. Pendaftaran" icon="pi pi-user-edit"
+                        url="/admin/proses-data/konfirmasi-pendaftaran.xhtml"/>
+            <p:menuitem value="Status Pendaftaran" icon="pi pi-user"
+                        url="/admin/proses-data/status-pendaftaran.xhtml"/>
+            <p:divider/>
+            <p:menuitem value="Reset pass" icon="pi pi-hashtag"
+                        url="/admin/proses-data/reset-password.xhtml"/>
+        </p:submenu>
+        <p:submenu label="Studi Mahasiswa" icon="pi pi-book">
+            <p:submenu label="KRS" icon="pi pi-book">
+                <p:menuitem value="Input Skema" icon="pi pi-plus" url="/admin/akademik/krs/skema-krs.xhtml"/>
+                <p:menuitem value="KRS Kelas Bawah" icon="pi pi-users" url="/admin/akademik/krs/kelasbawah-krs.xhtml"/>
+            </p:submenu>
+            <p:submenu label="KHS" icon="pi pi-book">
+                <p:menuitem value="Input Nilai" icon="pi pi-plus" url="/admin/akademik/khs/inputnilai.xhtml"/>
+                <p:menuitem value="Lihat Transkrip" icon="pi pi-table" url="/admin/akademik/khs/transkrip.xhtml"/>
+                <p:menuitem value="Lihat KHS" icon="pi pi-table" url="/admin/akademik/khs/khsmahasiswa.xhtml"/>
+            </p:submenu>
+            <p:submenu label="PAM" icon="pi pi-history">
+                <p:menuitem value="Verif. Pam" icon="pi pi-history" url="/admin/akademik/verify-pam.xhtml"/>
+            </p:submenu>
+        </p:submenu>
+        <p:menuitem value="Pengumuman" icon="pi pi-volume-up" url="/admin/pengumuman.xhtml"/>
+        <p:divider/>
+        <p:menuitem value="Log Out" icon="pi pi-fw pi-sign-out" action="#{logoutBean.logout()}"/>
+    </p:tieredMenu>
+</ui:composition>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>::Sistem Informasi STMIK Time::</title>
+    <h:outputStylesheet library="css" name="primeflex.min.css"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
+    <style type="text/css">
+        .ui-panelgrid .ui-panelgrid-header {
+            text-align: left;
+        }
+
+        .ui-panelgrid .ui-panelgrid-footer {
+            text-align: right;
+        }
+
+        div .mydiv {
+            padding: 1rem;
+            margin: .5rem 0 .5rem;
+            border: 1px solid var(--bluegray-200);
+            border-radius: 10px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form id="form_messages">
+        <p:growl id="messages" showDetail="true" showSummary="true"/>
+    </h:form>
+    <div id="container-luar" class="fixed w-full h-full top-0 left-0">
+        <div id="container-dalam" class="flex bg-white h-full w-full">
+            <div id="container-navigator" class="bg-cover m-1 w-15rem border-round shadow-4">
+                <!--sidebar disini-->
+                <ui:insert name="sidebar">
+                    <ui:include src="/admin/templates/sidebar.xhtml"/>
+                </ui:insert>
+            </div>
+            <div id="container-main" class="flex flex-column bg-white w-full m-1">
+                <div id="container-header"
+                     class="flex bg-blue-200 align-items-center pl-2 h-4rem mb-1 border-round shadow-4">
+                    <!--Header disini-->
+                    <ui:insert>
+                        <ui:include src="/admin/templates/header.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div id="container-content"
+                     class="flex flex-column bg-white p-2 h-full overflow-y-auto shadow-4 border-round">
+                    <!--content disini-->
+                    <h:form id="form_khs">
+                        <!--        <p:remoteCommand autoRun="true" action="#{khsMahasiswa2Bean.findAllSkemaKrsByKrs()}"-->
+                        <!--                         update="dt_khs"/>-->
+                        <div style="padding: .5rem 0 1rem">
+                            <p:inputText id="txt_nim" value="#{khsMahasiswa2Bean.nim}"
+                                         placeholder="NIM"/>
+                            <p:commandButton value="Submit" icon="pi pi-send"
+                                             action="#{khsMahasiswa2Bean.findAllKrsMahasiswaByNim()}"
+                                             update="dt_khs" process="@this txt_nim"/>
+                        </div>
+                        <p:dataTable id="dt_khs" value="#{khsMahasiswa2Bean.skemaKrss}"
+                                     var="sk" rowIndexVar="idx" stripedRows="true"
+                                     tableStyle="width: auto">
+                            <p:column headerText="No" styleClass="p-1 w-4rem">
+                                <p:outputLabel value="#{idx+1}"/>
+                            </p:column>
+
+                            <p:column headerText="Tahun Ajaran" styleClass="p-1 w-8rem">
+                                <p:outputLabel value="#{sk.tahunAjaran.keterangan}"/>
+                            </p:column>
+
+                            <p:column headerText="Jenis Semester" styleClass="p-1 w-8rem">
+                                <p:outputLabel value="#{sk.tahunAjaran.semester}"/>
+                            </p:column>
+
+                            <p:column headerText="Semester" styleClass="p-1 w-8rem">
+                                <p:outputLabel
+                                        value="#{khsMahasiswa2Bean.tampilkanSemester(sk)}"/>
+                            </p:column>
+
+                            <p:column headerText="Aksi" styleClass="p-1 w-8rem">
+                                <p:commandButton styleClass="ui-button-success" icon="pi pi-eye"
+                                                 action="#{khsMahasiswa2Bean.lihatKhs()}"
+                                                 oncomplete="PF('dialog_khs').show()"
+                                                 update="form_khsmahasiswa" value="lihat khs">
+                                    <f:setPropertyActionListener target="#{khsMahasiswa2Bean.selectedSkemaKrs}"
+                                                                 value="#{sk}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <p:dialog header="Khs Mahasiswa" showEffect="fade" modal="true" appendTo="@(body)"
+                              responsive="true" widgetVar="dialog_khs" fitViewport="true"
+                              resizable="true" style="min-width: 500px" maximizable="true">
+                        <p:outputPanel id="panel_print" styleClass="p-1 border-1 border-bluegray-200 border-round">
+                            <h:form id="form_khsmahasiswa">
+                                <div class="mydiv">
+                                    <p:outputLabel
+                                            value="Khs Mahasiswa T.A. #{khsMahasiswa2Bean.selectedSkemaKrs.tahunAjaran.keterangan}"
+                                            styleClass="font-bold text-2xl mb-2"/>
+                                </div>
+                                <div class="mydiv">
+                                    <p:panelGrid columns="2" columnClasses="ui-grid-col-4 p-1,ui-grid-col-8 p-1"
+                                                 styleClass="mb-2">
+
+                                        <p:outputLabel for="@next" value="Nim"/>
+                                        <p:outputLabel
+                                                value=": #{khsMahasiswa2Bean.selectedMahasiswa.user.statusMahasiswa.nim}"/>
+
+                                        <p:outputLabel for="@next" value="Nama Mahasiswa"/>
+                                        <p:outputLabel value=": #{khsMahasiswa2Bean.selectedMahasiswa.namaMahasiswa}"/>
+
+                                        <p:outputLabel for="@next" value="Kelas"/>
+                                        <p:outputLabel
+                                                value=": #{khsMahasiswa2Bean.selectedMahasiswa.user.statusMahasiswa.kodeKelas.namaKelas}"/>
+
+                                        <p:outputLabel for="@next" value="Angkatan"/>
+                                        <p:outputLabel value=": #{khsMahasiswa2Bean.selectedMahasiswa.tahunAngkatan}"/>
+
+                                        <p:outputLabel for="@next" value="Semester"/>
+                                        <p:outputLabel
+                                                value=": #{khsMahasiswa2Bean.tampilkanSemester()}"/>
+
+                                    </p:panelGrid>
+                                </div>
+                                <p:dataTable id="dt_khsmahasiswa" value="#{khsMahasiswa2Bean.krsNilais}" var="krs"
+                                             tableStyleClass="w-auto" rowIndexVar="idx"
+                                             styleClass="border-1 border-bluegray-200 border-round p-1">
+                                    <p:column headerText="No" styleClass="p-1">
+                                        <p:outputLabel value="#{idx+1}"/>
+                                    </p:column>
+                                    <p:column headerText="Kode Matakuliah" styleClass="p-1">
+                                        <p:outputLabel value="#{krs.krsMahasiswa.skedul.idMatakuliah.kodeMatakuliah}"/>
+                                    </p:column>
+                                    <p:column headerText="Nama Matakuliah" styleClass="p-1">
+                                        <p:outputLabel value="#{krs.krsMahasiswa.skedul.idMatakuliah.namaMatakuliah}"/>
+                                    </p:column>
+                                    <p:column headerText="SKS" styleClass="p-1">
+                                        <p:outputLabel value="#{krs.krsMahasiswa.skedul.idMatakuliah.sks}"/>
+                                    </p:column>
+                                    <p:columns value="#{khsMahasiswa2Bean.skemaNilaiDetails}" var="col"
+                                               headerText="#{col.jenisNilai.jenis}" styleClass="p-1"
+                                               rendered="#{khsMahasiswa2Bean.render(col)}">
+                                        <p:outputLabel value="#{krs.nilais[col.jenisNilai.jenis]}">
+                                            <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                        </p:outputLabel>
+                                    </p:columns>
+                                    <p:column headerText="Total" styleClass="p-1">
+                                        <p:outputLabel value="#{krs.nilais['total']}">
+                                            <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                        </p:outputLabel>
+                                        <!--                                        <p:outputLabel value="(#{krs.nilais['perbaikan']})"-->
+                                        <!--                                                       rendered="#{krs.nilais['perbaikan']!=null}">-->
+                                        <!--                                            <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>-->
+                                        <!--                                        </p:outputLabel>-->
+                                    </p:column>
+                                    <p:column headerText="Nilai" styleClass="p-1">
+                                        <p:outputLabel value="#{krs.nilais['huruf']}" styleClass="font-bold"/>
+                                    </p:column>
+                                    <f:facet name="footer">
+                                        <p:outputLabel value="ipk sementara : #{khsMahasiswa2Bean.ipkSementara}"
+                                                       styleClass="text-xl font-bold p-1">
+                                            <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                                        </p:outputLabel>
+                                    </f:facet>
+                                </p:dataTable>
+                            </h:form>
+                        </p:outputPanel>
+                        <div style="text-align: right; margin-top: 1rem">
+                            <p:commandButton value="Print" icon="pi pi-print">
+                                <p:printer target="panel_print"/>
+                            </p:commandButton>
+                        </div>
+                    </p:dialog>
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id="form_printmahasiswa">
+        <p:outputPanel id="outputpanel_printmahasiswa">
+            <p:panelGrid columns="0" layout="tabular" styleClass="ui-noborder">
+                <p:row>
+                    <p:column rowspan="6" styleClass="p-0">
+                        <h:graphicImage url="/resources/images/logo_time.jpg" styleClass="w-8rem"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="p-0" style="text-align:center">
+                        <p:outputLabel value="Sekolah Tinggi Manajemen Informatika dan Komputer"
+                                       styleClass="text-2xl font-bold"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="p-0" style="text-align:center">
+                        <p:outputLabel value="TIME" styleClass="text-3xl font-bold"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="p-0" style="text-align:center">
+                        <p:outputLabel value="Jln. Merbabu No. 32 AA-BB"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="p-0" style="text-align:center">
+                        <i class="pi pi-phone"/>
+                        <p:outputLabel value="(061)4561932"/>
+                        <i class="pi pi-inbox"/>
+                        <p:outputLabel value="stmiktime@gmail.com"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="p-0" style="text-align:center">
+                        <i class="pi pi-globe"/><p:outputLabel value="www.stmik-time.ac.id"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+
+            <hr/>
+            <p:outputLabel value="Data Mahasiswa" styleClass="font-bold text-2xl"/><br/><br/>
+
+            <p:panelGrid columns="2" columnClasses="ui-grid-col-4 p-0,ui-grid-col-8 p-0" layout="grid">
+                <p:outputLabel />
+                <p:graphicImage value="#{gambarProfilBean.gambarProfilBuff}" styleClass="w-6rem border-round" stream="false"/>
+
+                <p:outputLabel for="@next" value="Tanggal Pendaftaran"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.tanggalPendaftaran}">
+                    <f:convertDateTime pattern="dd MMMM yyyy"/>
+                </p:outputLabel>
+
+                <p:outputLabel for="@next" value="Kampus"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.kampus.kodeKampus}"/>
+
+                <p:outputLabel for="@next" value="Jam Kuliah"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.waktuKuliah.waktuKuliah} (#{mahasiswa2Bean.selectedMahasiswa.waktuKuliah.keterangan})"/>
+
+                <p:outputLabel for="@next" value="Program Studi"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.programStudi.namaProgramstudi}"/>
+
+                <p:outputLabel for="@next" value="Nama Mahasiswa"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.namaMahasiswa}"/>
+
+                <p:outputLabel for="@next" value="Tempat Lahir"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.tempatLahir}"/>
+
+                <p:outputLabel for="@next" value="Tanggal Lahir"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.tanggalLahir}"/>
+
+                <p:outputLabel for="@next" value="Jenis Kelamin"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.jenisKelamin}"/>
+
+                <p:outputLabel for="@next" value="Golongan Darah"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.golonganDarah}"/>
+
+                <p:outputLabel for="@next" value="Agama"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.agama.agama}"/>
+
+                <p:outputLabel for="@next" value="Status"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.status.status}"/>
+
+                <p:outputLabel for="@next" value="Kewarganegaraan"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.kewarganegaraan}"/>
+
+                <p:outputLabel for="@next" value="Alamat Mahasiswa"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.alamatMahasiswa}"/>
+
+                <p:outputLabel for="@next" value="Telepon"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.noTeleponMahasiswa}"/>
+
+                <p:outputLabel for="@next" value="Hobi"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.hobi}"/>
+
+                <p:outputLabel for="@next" value="Jumlah Saudara"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.jumlahSaudara}"/>
+
+                <p:outputLabel for="@next" value="Anak Ke-"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.anakKe}"/>
+
+                <p:outputLabel for="@next" value="Nama Ayah"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.namaAyah}"/>
+
+                <p:outputLabel for="@next" value="Nama Ibu"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.namaIbu}"/>
+
+                <p:outputLabel for="@next" value="Pekerjaan Orang Tua"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.pekerjaanOrangtua}"/>
+
+                <p:outputLabel for="@next" value="Alamat Orang Tua"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.alamatOrangtua}"/>
+
+                <p:outputLabel for="@next" value="No Telp. Orang Tua"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.noTeleponOrangtua}"/>
+
+                <p:outputLabel for="@next" value="Pendidikan Orang Tua"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.pendidikanOrangtua}"/>
+
+                <p:outputLabel for="@next" value="Asal Sekolah"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.sekolah.namaSekolah}"/>
+
+                <p:outputLabel for="@next" value="Jurusan"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.jurusan}"/>
+
+                <p:outputLabel for="@next" value="Tahun Lulus"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.tahunLulus}"/>
+
+                <p:outputLabel for="@next" value="No Ijazah"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.noIjazah}"/>
+
+                <p:outputLabel for="@next" value="Tanggal Ijazah"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.tanggalIjazah}">
+                    <f:convertDateTime pattern="dd MMMM yyyy"/>
+                </p:outputLabel>
+
+                <p:outputLabel for="@next" value="Keterangan"/>
+                <p:outputLabel value=": #{mahasiswa2Bean.selectedMahasiswa.keterangan}"/>
+            </p:panelGrid>
+
+        </p:outputPanel>
+        <p:commandButton value="Print" icon="pi pi-print" styleClass="shadow-1" style="float:right">
+            <p:printer target=":form_printmahasiswa:outputpanel_printmahasiswa"/>
+        </p:commandButton>
+    </h:form>
+</ui:composition>

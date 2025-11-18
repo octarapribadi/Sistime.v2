@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>::Registrasi Mahasiswa::</title>
+    <h:outputStylesheet library="css" name="primeflex.min.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+</h:head>
+<h:body>
+    <div id="container-luar" class="fixed top-0 left-0 bg-white h-screen w-screen">
+        <div id="container-dalam" class="flex w-full h-full justify-content-center align-items-center">
+            <div id="registrasi-box" class=" flex flex-column border-round h-fit bg-white shadow-5" style="width: 650px">
+
+                <h:form id="form_registrasi">
+                    <p:growl id="messages" showDetail="true"/>
+                    <p:outputPanel id="panel_registrasi">
+                        <p:panelGrid columns="2" columnClasses="col-4 p-1 pl-2, col-8 p-1 pr-2"
+                                     styleClass="ui-noborder">
+                            <f:facet name="header">
+                                <p:outputLabel value="Registrasi Mahasiswa Baru"/>
+                            </f:facet>
+                            <p:outputLabel for="@next" value="Nama Lengkap"/>
+                            <p:inputText id="txt_nama" styleClass="w-full" required="true"
+                                         value="#{registrasiBean.nama}"/>
+
+                            <p:outputLabel for="@next" value="Username"/>
+                            <p:inputText id="txt_username" styleClass="w-full bg-yellow-100" required="true"
+                                         value="#{registrasiBean.username}" maxlength="30"
+                                         validator="#{usernameValidatorBean.validate}"/>
+
+                            <p:outputLabel for="@next" value="Email"/>
+                            <p:inputText id="txt_email" type="email" styleClass="w-full" required="true"
+                                         value="#{registrasiBean.email}">
+                                <f:validator binding="#{emailValidatorBeanV2}"/>
+                                <f:validator binding="#{emailValidatorBean}"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="@next" value="Password"/>
+                            <p:password id="txt_password" styleClass="w-full" required="true"
+                                        value="#{registrasiBean.password}"
+                                        match="txt_retypepassword"/>
+
+                            <p:outputLabel for="@next" value="Retype Password"/>
+                            <p:password id="txt_retypepassword" styleClass="w-full" required="true"
+                                        value="#{registrasiBean.retypePassword}"/>
+
+                            <p:outputLabel for="@next" value=""/>
+                            <p:captcha label="captcha" id="captcha"/>
+
+                            <p:outputLabel value=""/>
+                            <p:row>
+                                <p:column>
+                                    <p:commandButton id="btn_submit" value="Daftar" styleClass="m-1"
+                                                     action="#{registrasiBean.daftar}" update="messages @form"/>
+                                    <p:commandButton id="btn_reset" value="Reset" styleClass="m-1"
+                                                     update="panel_registrasi" process="@this">
+                                        <p:resetInput target="panel_registrasi"/>
+                                    </p:commandButton>
+
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+
+                    </p:outputPanel>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>
