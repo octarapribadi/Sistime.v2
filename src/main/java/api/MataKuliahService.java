@@ -3,11 +3,11 @@ package api;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ejb.MataKuliahManager;
 import model.MataKuliah;
+import model.TipeMataKuliah;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MataKuliahDTO{
-    Long id, idTipematakuliah;
+    Long id;
+    TipeMataKuliah tipeMataKuliah;
     String kodeMatakuliah, namaMatakuliah, keterangan;
     Integer sks, semester;
 
@@ -27,12 +28,12 @@ class MataKuliahDTO{
         this.id = id;
     }
 
-    public Long getIdTipematakuliah() {
-        return idTipematakuliah;
+    public TipeMataKuliah getTipeMataKuliah() {
+        return tipeMataKuliah;
     }
 
-    public void setIdTipematakuliah(Long idTipematakuliah) {
-        this.idTipematakuliah = idTipematakuliah;
+    public void setTipeMataKuliah(TipeMataKuliah tipeMataKuliah) {
+        this.tipeMataKuliah = tipeMataKuliah;
     }
 
     public String getKodeMatakuliah() {
@@ -77,14 +78,14 @@ class MataKuliahDTO{
 }
 
 @Path("/matakuliah")
-@Produces("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class MataKuliahService {
 
     @EJB
     MataKuliahManager mataKuliahManager;
 
     @GET
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Response getMatakuliah() {
         List<MataKuliah> matakuliahs = mataKuliahManager.findAllMataKuliah();
         List<MataKuliahDTO> mataKuliahDTOS = new ArrayList<>();
@@ -95,7 +96,7 @@ public class MataKuliahService {
             matkul.setSks(m.getSks());
             matkul.setKodeMatakuliah(m.getKodeMatakuliah());
             matkul.setNamaMatakuliah(m.getNamaMatakuliah());
-            matkul.setIdTipematakuliah(m.getIdTipematakuliah().getId());
+            matkul.setTipeMataKuliah(m.getIdTipematakuliah()!=null?m.getIdTipematakuliah():null);
             matkul.setKeterangan(m.getKeterangan());
             mataKuliahDTOS.add(matkul);
         });
