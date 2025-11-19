@@ -115,7 +115,7 @@
 <!--    <security-constraint>-->
 <!--        <web-resource-collection>-->
 <!--            <web-resource-name>Protected</web-resource-name>-->
-<!--            <url-pattern>/api/*</url-pattern>-->
+<!--            <url-pattern>/restservice/*</url-pattern>-->
 <!--        </web-resource-collection>-->
 <!--        <auth-constraint>-->
 <!--            <role-name>administrator</role-name>-->

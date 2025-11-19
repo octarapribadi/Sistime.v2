@@ -1,4 +1,4 @@
-package api;
+package rest.service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ejb.UserManager;

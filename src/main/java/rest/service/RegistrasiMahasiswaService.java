@@ -1,4 +1,4 @@
-package api;
+package rest.service;
 
 import ejb.RegistrasiMahasiswaManager;
 import model.RegistrasiMahasiswa;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("registrasimahasiswas")
-@Produces("application/json")
+@Produces(MediaType.APPLICATION_JSON)
 public class RegistrasiMahasiswaService {
     @EJB
     RegistrasiMahasiswaManager registrasiMahasiswaManager;

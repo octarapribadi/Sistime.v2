@@ -19,89 +19,18 @@
 </h:head>
 <h:body>
     <div id="container-luar" class="fixed top-0 left-0 bg-white h-screen w-screen">
-        <div id="container-dalam" class="flex flex-column w-full h-full justify-content-center align-items-center surface-200">
-            <div id="login-box" class=" flex flex-column border-round w-30rem h-fit bg-white shadow-5 mb-2">
-                <div id="header-box"
-                     class="flex justify-content-center align-items-center bg-primary h-3rem border-round-top">
-                    <p:outputLabel value="Login"/>
-                </div>
-                <div id="content-box" class="flex flex-column bg-primary-100 border-round-bottom">
-
-                    <h:form id="login">
-                        <!--<form method="post" action="j_security_check">-->
-                        <p:growl id="message"/>
-                        <p:outputPanel id="panel_login">
-                            <p:focus for="j_username"/>
-                            <div id="email-box" class="grid m-0 pl-2 pr-2 pt-2">
-                                <div class="col-3">
-                                    <p:outputLabel for="@next" value="Username"/>
-                                </div>
-                                <div class="col">
-                                    <p:inputText id="j_username" styleClass="w-full"
-                                                 value="#{loginBean.username}" required="true"
-                                    requiredMessage="Username tidak boleh kosong"/>
-                                </div>
-                            </div>
-                            <div id="password-box" class="grid m-0 pl-2 pr-2">
-                                <div class="col-3">
-                                    <p:outputLabel for="@next" value="Password"/>
-                                </div>
-                                <div class="col">
-                                    <p:password id="j_password" styleClass="w-full" value="#{loginBean.password}"
-                                    required="true" requiredMessage="Password tidak boleh kosong"/>
-                                </div>
-                            </div>
-                            <div class="grid m-0 pl-2 pr-2">
-                                <div class="col-3">
-                                    <p:outputLabel for="@next" value="Hak akses"/>
-                                </div>
-                                <div class="col">
-                                    <p:selectOneButton styleClass="w-full" id="menu_hakakses" value="#{loginBean.hakAkses}"
-                                                       required="true" requiredMessage="Hak akses tidak boleh kosong">
-                                        <f:selectItem itemValue="admin" itemLabel="admin"/>
-                                        <f:selectItem itemValue="dosen" itemLabel="dosen"/>
-                                        <f:selectItem itemValue="mahasiswa" itemLabel="mahasiswa"/>
-                                    </p:selectOneButton>
-                                </div>
-                            </div>
-                            <div class="grid m-0 pl-2 pr-2">
-                                <div class="col-3">
-
-                                </div>
-                                <div class="col">
-                                    <p:captcha rendered="true" requiredMessage="Captcha tidak boleh kosong"/>
-                                </div>
-                            </div>
-                            <div id="submit-box" class="grid m-0 pl-2 pr-2">
-                                <div class="col-3">
-
-                                </div>
-                                <div class="col-2" style="margin-right: 1rem">
-                                    <p:commandButton id="btn_submit" value="Login" action="#{loginBean.login()}"
-                                                     update="message" icon="pi pi-user"/>
-                                    <!--<p:commandButton id="btn_submit" value="Login"/>-->
-                                </div>
-                                <div class="col">
-                                    <p:commandButton id="btn_reset" value="Reset" update="panel_login" process="@this" icon="pi pi-history">
-                                        <p:resetInput target="panel_login"/>
-                                    </p:commandButton>
-                                </div>
-                            </div>
-                            <div id="register-box" class="grid m-0 pl-2 pr-2">
-                                <div class="col-3"></div>
-                                <div class="col">
-                                    <p:link id="link_daftarbaru" value="Daftar Baru" href="/registrasi.xhtml"/>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <p:link id="link_lupapassword" value="Lupa Sandi" href="/lupapassword.xhtml"/>
-                                </div>
-                            </div>
-                        </p:outputPanel>
-                    </h:form>
-                </div>
+        <div id="container-dalam"
+             class="flex flex-column w-full h-full justify-content-center align-items-center surface-200">
+            <div id="login-box" class="flex flex-column border-round w-30rem h-fit mb-2">
+                <p:outputLabel value="Sistime.v2 JAXRS" styleClass="text-primary font-bold text-2xl"/>
+                <ul>
+                    <li><p:outputLabel value="/restservice/transkrip" styleClass="text-black-alpha-70"/></li>
+                    <li><p:outputLabel value="/restservice/mahasiswa" styleClass="text-black-alpha-70"/></li>
+                </ul>
             </div>
-            <p:outputLabel value="Sistem Informasi STMIK Time (Sistime) v1.0.0" styleClass="text-black-alpha-70 font-bold"/>
-            <p:outputLabel value="Copyright © 2024 STMIK Time" styleClass="font-bold text-black-alpha-70"/>
+            <p:outputLabel value="Sistem Informasi STMIK Time (Sistime) v1.0.0"
+                           styleClass="text-black-alpha-70 font-bold"/>
+            <p:outputLabel value="Copyright © 2025 STMIK Time" styleClass="font-bold text-black-alpha-70"/>
         </div>
     </div>
 </h:body>

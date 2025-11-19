@@ -1,14 +1,10 @@
 package bean;
 
-import org.wildfly.security.http.HttpServerRequest;
-
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 @Named
 @RequestScoped

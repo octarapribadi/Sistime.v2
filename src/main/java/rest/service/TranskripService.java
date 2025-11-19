@@ -1,4 +1,4 @@
-package api;
+package rest.service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ejb.KrsMahasiswaManager;
@@ -61,7 +61,7 @@ class Transkrip {
 }
 
 @Path("/transkrip")
-@Produces("application/json")
+@Produces(MediaType.APPLICATION_JSON)
 public class TranskripService {
 
     @EJB
@@ -81,24 +81,24 @@ public class TranskripService {
     public Response getTranskrip(@PathParam("nim") String nim) {
         try {
             Mahasiswa selectedMahasiswa = mahasiswaManager.findMahasiswaByNim(nim);
-            if (selectedMahasiswa != null && selectedMahasiswa.getUser().getStatusMahasiswa().getNim().equals("2244068")) {
+            if (selectedMahasiswa != null) {
                 List<Transkrip> transkrips = new ArrayList<>();
                 List<KrsMahasiswa> krsMahasiswas = krsMahasiswaManager.findKrsMahasiswaByUserId(selectedMahasiswa.getUser().getId());
                 List<Nilai2> nilai2s = nilai2Manager.findAllNilaiByKrsMahasiswas(krsMahasiswas);
-                for(KrsMahasiswa krs: krsMahasiswas){
+                for (KrsMahasiswa krs : krsMahasiswas) {
                     Transkrip transkrip = new Transkrip();
                     transkrip.krsId = krs.getId();
                     transkrip.kodeMatkul = krs.getSkedul().getIdMatakuliah().getKodeMatakuliah();
                     transkrip.matkul = krs.getSkedul().getIdMatakuliah().getNamaMatakuliah();
                     transkrip.sks = krs.getSkedul().getIdMatakuliah().getSks();
-                    for(Nilai2 n: nilai2s){
-                        if(Objects.equals(n.getKrsMahasiswa().getId(), krs.getId())){
-                            transkrip.nilais.put(n.getJenisNilai().getJenis(),n.getNilai());
+                    for (Nilai2 n : nilai2s) {
+                        if (Objects.equals(n.getKrsMahasiswa().getId(), krs.getId())) {
+                            transkrip.nilais.put(n.getJenisNilai().getJenis(), n.getNilai());
                         }
                     }
                     transkrips.add(transkrip);
                 }
-                return Response.ok(transkrips,MediaType.APPLICATION_JSON).build();
+                return Response.ok(transkrips, MediaType.APPLICATION_JSON).build();
             }
             return Response.status(Response.Status.NO_CONTENT).build();
         } catch (Exception ex) {

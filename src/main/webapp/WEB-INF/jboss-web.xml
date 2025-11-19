@@ -4,6 +4,6 @@
            xsi:schemaLocation="
       http://www.jboss.com/xml/ns/javaee
       http://www.jboss.org/j2ee/schema/jboss-web_5_1.xsd">
-    <security-domain>SistimeSecurityDomain</security-domain>
-    <context-root>/</context-root>
+    <security-domain>Sistimev2SecurityDomain</security-domain>
+    <context-root>/restservice</context-root>
 </jboss-web>

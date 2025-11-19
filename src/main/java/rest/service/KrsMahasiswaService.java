@@ -1,6 +1,5 @@
-package api;
+package rest.service;
 
-import bean.KrsMahasiswaBean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import ejb.KrsMahasiswaManager;
 import ejb.UserManager;
@@ -14,9 +13,10 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-class KrsMahasiswaDTO{
+class KrsMahasiswaDTO {
     Long idKrs, idSkemaKrs;
     String kodeMatakuliah, namaMatakuliah, namaDosen;
+
     public Long getIdKrs() {
         return idKrs;
     }
@@ -74,12 +74,12 @@ public class KrsMahasiswaService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.TEXT_PLAIN)
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Response getKrs(@PathParam("username") String username){
-        if(username.equals("2244068")) {
-            User user = userManager.findUser(username);
+    public Response getKrs(@PathParam("username") String username) {
+        User user = userManager.findUser(username);
+        if (user != null) {
             List<KrsMahasiswa> krsMahasiswas = krsMahasiswaManager.findKrsMahasiswaByUserId(user.getId());
             List<KrsMahasiswaDTO> krsMahasiswaDTOs = new ArrayList<>();
-            krsMahasiswas.forEach(krs->{
+            krsMahasiswas.forEach(krs -> {
                 KrsMahasiswaDTO krsMahasiswaDTO = new KrsMahasiswaDTO();
                 krsMahasiswaDTO.setIdKrs(krs.getId());
                 krsMahasiswaDTO.setIdSkemaKrs(krs.getSkedul().getIdSkemakrs().getId());
@@ -88,7 +88,7 @@ public class KrsMahasiswaService {
                 krsMahasiswaDTO.setNamaMatakuliah(krs.getSkedul().getIdMatakuliah().getNamaMatakuliah());
                 krsMahasiswaDTOs.add(krsMahasiswaDTO);
             });
-            return Response.ok(krsMahasiswaDTOs,MediaType.APPLICATION_JSON).build();
+            return Response.ok(krsMahasiswaDTOs, MediaType.APPLICATION_JSON).build();
         }
         return Response.noContent().build();
     }

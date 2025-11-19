@@ -4,10 +4,10 @@
 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.octarapribadi</groupId>
-    <artifactId>Sistime</artifactId>
+    <artifactId>Sistimev2</artifactId>
     <version>0.0.1</version>
     <packaging>war</packaging>
-    <name>Sistime</name>
+    <name>Sistimev2</name>
     <description>Sistem Informasi STMIK TIME</description>
 
     <properties>
@@ -48,13 +48,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>8.2.0</version>
             <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.wildfly.plugins</groupId>
-            <artifactId>wildfly-maven-plugin</artifactId>
-            <version>${version.wildfly.maven.plugin}</version>
-        </dependency>
-
+        <!--
+                <dependency>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                </dependency>
+        -->
         <!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
         <dependency>
             <groupId>org.primefaces</groupId>
@@ -116,7 +116,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     </profiles>
 
     <build>
-        <finalName>Sistime</finalName>
+        <finalName>Sistimev2</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
