@@ -1,6 +1,6 @@
 package bean.converter;
 
-import ejb.DosenManager;
+import repo.DosenManager;
 import model.Dosen;
 
 import javax.ejb.EJB;

@@ -1,6 +1,6 @@
 package rest.service;
 
-import ejb.RegistrasiMahasiswaManager;
+import repo.RegistrasiMahasiswaManager;
 import model.RegistrasiMahasiswa;
 
 import javax.ejb.EJB;

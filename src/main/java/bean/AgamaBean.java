@@ -1,13 +1,11 @@
 package bean;
 
-import ejb.AgamaManager;
+import repo.AgamaManager;
 import model.Agama;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;

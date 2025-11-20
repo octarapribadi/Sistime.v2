@@ -1,7 +1,7 @@
 package rest.service;
 
-import ejb.MahasiswaManager;
-import ejb.UserManager;
+import repo.MahasiswaManager;
+import repo.UserManager;
 import model.Mahasiswa;
 import model.User;
 

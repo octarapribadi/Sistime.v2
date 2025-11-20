@@ -1,7 +1,7 @@
 package bean;
 
-import ejb.MahasiswaManager;
-import ejb.StatusMahasiswaManager;
+import repo.MahasiswaManager;
+import repo.StatusMahasiswaManager;
 import software.xdev.chartjs.model.charts.BarChart;
 import software.xdev.chartjs.model.charts.LineChart;
 import software.xdev.chartjs.model.charts.PieChart;
@@ -14,8 +14,6 @@ import software.xdev.chartjs.model.dataset.LineDataset;
 import software.xdev.chartjs.model.dataset.PieDataset;
 import software.xdev.chartjs.model.options.BarOptions;
 import software.xdev.chartjs.model.options.LineOptions;
-import software.xdev.chartjs.model.options.Plugins;
-import software.xdev.chartjs.model.options.Title;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

@@ -1,7 +1,7 @@
 package bean;
 
-import ejb.MahasiswaManager;
-import ejb.StatusMahasiswaManager;
+import repo.MahasiswaManager;
+import repo.StatusMahasiswaManager;
 import model.Kelas;
 import model.Mahasiswa;
 import model.StatusMahasiswa;
@@ -13,8 +13,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

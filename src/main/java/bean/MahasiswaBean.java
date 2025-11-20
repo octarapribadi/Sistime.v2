@@ -1,8 +1,8 @@
 package bean;
 
-import ejb.MahasiswaManager;
-import ejb.ProgramStudiManager;
-import ejb.SekolahManager;
+import repo.MahasiswaManager;
+import repo.ProgramStudiManager;
+import repo.SekolahManager;
 import model.*;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
@@ -19,7 +19,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Named
 @ViewScoped

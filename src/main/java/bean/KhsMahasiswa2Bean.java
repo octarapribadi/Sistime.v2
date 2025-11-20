@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.*;
+import repo.*;
 import model.*;
 
 import javax.annotation.PostConstruct;
@@ -10,9 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Named
 @ViewScoped

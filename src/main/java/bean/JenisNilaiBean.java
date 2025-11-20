@@ -1,8 +1,8 @@
 package bean;
 
-import ejb.JenisNilaiManager;
-import ejb.SkedulManager;
-import ejb.SkemaKrsNilaiManager;
+import repo.JenisNilaiManager;
+import repo.SkedulManager;
+import repo.SkemaKrsNilaiManager;
 import model.*;
 
 import javax.annotation.PostConstruct;

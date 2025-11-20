@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.SekolahManager;
+import repo.SekolahManager;
 import model.Sekolah;
 
 import javax.annotation.PostConstruct;
@@ -11,9 +11,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Named

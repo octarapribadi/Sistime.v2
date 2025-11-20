@@ -1,9 +1,8 @@
 package bean;
 
-import ejb.DokumenManager;
+import repo.DokumenManager;
 import model.Dokumen;
 import model.JenisDokumen;
-import org.apache.commons.compress.utils.FileNameUtils;
 import org.jboss.logging.Logger;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.DefaultStreamedContent;

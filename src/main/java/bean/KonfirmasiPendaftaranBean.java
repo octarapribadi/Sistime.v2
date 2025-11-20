@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.RegistrasiManager;
+import repo.RegistrasiManager;
 import model.Registrasi;
 
 import javax.annotation.PostConstruct;

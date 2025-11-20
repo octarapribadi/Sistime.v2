@@ -1,7 +1,7 @@
 package bean;
 
 
-import ejb.UserManager;
+import repo.UserManager;
 import model.User;
 import org.apache.commons.codec.digest.DigestUtils;
 

@@ -1,8 +1,7 @@
 package bean;
 
-import ejb.GambarProfilManager;
+import repo.GambarProfilManager;
 import model.GambarProfil;
-import org.apache.commons.io.FileUtils;
 import org.jboss.logging.Logger;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
@@ -10,13 +9,11 @@ import org.primefaces.model.file.UploadedFile;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.*;
-import java.nio.file.Files;
 
 @Named
 @ViewScoped

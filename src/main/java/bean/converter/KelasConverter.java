@@ -1,6 +1,6 @@
 package bean.converter;
 
-import ejb.KelasManager;
+import repo.KelasManager;
 import model.Kelas;
 
 import javax.ejb.EJB;

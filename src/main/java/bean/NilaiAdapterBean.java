@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.SkemaKrsNilaiManager;
+import repo.SkemaKrsNilaiManager;
 import iface.RuleIface;
 import model.SkemaKrsNilai;
 

@@ -1,9 +1,9 @@
 package rest.service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import ejb.KrsMahasiswaManager;
-import ejb.MahasiswaManager;
-import ejb.Nilai2Manager;
+import repo.KrsMahasiswaManager;
+import repo.MahasiswaManager;
+import repo.Nilai2Manager;
 import model.*;
 import org.jboss.logging.Logger;
 

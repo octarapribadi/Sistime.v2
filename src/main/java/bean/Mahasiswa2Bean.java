@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.MahasiswaManager;
+import repo.MahasiswaManager;
 import model.*;
 
 import javax.annotation.PostConstruct;

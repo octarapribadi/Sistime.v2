@@ -1,7 +1,7 @@
 package bean;
 
-import ejb.GambarProfilManager;
-import ejb.StatusPendaftaranManager;
+import repo.GambarProfilManager;
+import repo.StatusPendaftaranManager;
 import model.GambarProfil;
 import model.StatusPendaftaran;
 import org.jboss.logging.Logger;

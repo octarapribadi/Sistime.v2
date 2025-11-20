@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.PengumumanManager;
+import repo.PengumumanManager;
 import model.Pengumuman;
 
 import javax.annotation.PostConstruct;

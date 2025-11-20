@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.*;
+import repo.*;
 import model.*;
 import org.jboss.logging.Logger;
 

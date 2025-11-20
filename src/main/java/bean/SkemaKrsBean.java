@@ -1,24 +1,19 @@
 package bean;
 
-import ejb.KrsMahasiswaManager;
-import ejb.SkemaKrsManager;
-import ejb.TahunAjaranManajer;
+import repo.KrsMahasiswaManager;
+import repo.SkemaKrsManager;
+import repo.TahunAjaranManajer;
 import model.KrsMahasiswa;
 import model.SkemaKrs;
 import model.TahunAjaran;
-import model.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.List;
 

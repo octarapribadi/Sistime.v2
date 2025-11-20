@@ -1,9 +1,8 @@
 package bean;
 
-import ejb.KampusManager;
+import repo.KampusManager;
 import model.Kampus;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;

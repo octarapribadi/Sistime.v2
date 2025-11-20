@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.SekolahManager;
+import repo.SekolahManager;
 import model.Sekolah;
 
 import javax.ejb.EJB;

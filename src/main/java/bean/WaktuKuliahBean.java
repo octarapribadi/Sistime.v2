@@ -1,12 +1,9 @@
 package bean;
 
-import ejb.WaktuKuliahManager;
+import repo.WaktuKuliahManager;
 import model.WaktuKuliah;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;

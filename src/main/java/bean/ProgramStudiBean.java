@@ -1,7 +1,7 @@
 package bean;
 
 
-import ejb.ProgramStudiManager;
+import repo.ProgramStudiManager;
 import model.ProgramStudi;
 
 import javax.annotation.PostConstruct;

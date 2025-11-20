@@ -1,6 +1,6 @@
 package bean.converter;
 
-import ejb.MataKuliahManager;
+import repo.MataKuliahManager;
 
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;

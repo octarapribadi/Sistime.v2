@@ -1,7 +1,7 @@
 package bean.validator;
 
 
-import ejb.UserManager;
+import repo.UserManager;
 import model.User;
 
 import javax.ejb.EJB;
@@ -11,9 +11,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import java.io.Serializable;
 
 @Named
 @RequestScoped

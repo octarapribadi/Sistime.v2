@@ -1,6 +1,6 @@
 package bean.converter;
 
-import ejb.JenisNilaiManager;
+import repo.JenisNilaiManager;
 import model.JenisNilai;
 
 import javax.ejb.EJB;

@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.TahunAjaranManajer;
+import repo.TahunAjaranManajer;
 import model.TahunAjaran;
 
 import javax.annotation.PostConstruct;

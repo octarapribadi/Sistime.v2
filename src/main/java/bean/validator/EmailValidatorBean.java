@@ -1,21 +1,17 @@
 package bean.validator;
 
 
-import ejb.MahasiswaManager;
-import ejb.RegistrasiMahasiswaManager;
-import ejb.RegistrasiManager;
+import repo.MahasiswaManager;
+import repo.RegistrasiManager;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import java.io.Serializable;
 
 @Named
 @RequestScoped

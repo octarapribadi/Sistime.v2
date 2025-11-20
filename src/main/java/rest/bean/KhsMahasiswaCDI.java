@@ -1,18 +1,15 @@
 package rest.bean;
 
-import ejb.KrsMahasiswaManager;
-import ejb.Nilai2Manager;
+import repo.KrsMahasiswaManager;
+import repo.Nilai2Manager;
 import model.KrsMahasiswa;
 import model.Nilai2;
 import rest.model.KhsDTO;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 @RequestScoped
 public class KhsMahasiswaCDI {

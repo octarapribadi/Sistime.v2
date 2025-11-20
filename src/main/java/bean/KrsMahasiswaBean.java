@@ -1,9 +1,8 @@
 package bean;
 
-import ejb.*;
+import repo.*;
 import model.*;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

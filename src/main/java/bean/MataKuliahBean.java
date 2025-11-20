@@ -1,8 +1,7 @@
 package bean;
 
-import ejb.MataKuliahManager;
-import ejb.SkedulManager;
-import ejb.TipeMataKuliahManager;
+import repo.MataKuliahManager;
+import repo.SkedulManager;
 import model.MataKuliah;
 import model.ProgramStudi;
 import model.Skedul;
@@ -13,13 +12,11 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.PersistenceException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Named
 @ViewScoped

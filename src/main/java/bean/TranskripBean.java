@@ -1,9 +1,9 @@
 package bean;
 
-import ejb.KrsMahasiswaManager;
-import ejb.MahasiswaManager;
-import ejb.Nilai2Manager;
-import ejb.StatusMahasiswaManager;
+import repo.KrsMahasiswaManager;
+import repo.MahasiswaManager;
+import repo.Nilai2Manager;
+import repo.StatusMahasiswaManager;
 import model.KrsMahasiswa;
 import model.Mahasiswa;
 import model.KrsNilai;

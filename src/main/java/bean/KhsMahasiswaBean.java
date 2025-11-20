@@ -1,15 +1,13 @@
 package bean;
 
-import ejb.NilaiManager;
+import repo.NilaiManager;
 import model.Nilai;
 import model.NilaiKeterangan;
 import model.TabelSemester;
-import model.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;

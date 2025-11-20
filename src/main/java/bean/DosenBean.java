@@ -1,11 +1,10 @@
 package bean;
 
-import ejb.DosenManager;
+import repo.DosenManager;
 import model.Dosen;
 import org.primefaces.component.api.UIColumn;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.ColumnToggleEvent;
-import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
 
 import javax.annotation.PostConstruct;

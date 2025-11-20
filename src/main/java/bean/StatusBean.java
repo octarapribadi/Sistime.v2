@@ -1,12 +1,10 @@
 package bean;
 
-import ejb.StatusManager;
+import repo.StatusManager;
 import model.Status;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;

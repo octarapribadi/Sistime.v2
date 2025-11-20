@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.KrsMahasiswaManager;
+import repo.KrsMahasiswaManager;
 import model.KrsMahasiswa;
 import model.User;
 
@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

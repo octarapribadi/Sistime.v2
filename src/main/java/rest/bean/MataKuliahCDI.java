@@ -1,6 +1,6 @@
 package rest.bean;
 
-import ejb.MataKuliahManager;
+import repo.MataKuliahManager;
 import model.MataKuliah;
 
 import javax.ejb.EJB;

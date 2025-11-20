@@ -1,6 +1,6 @@
 package bean;
 
-import ejb.UserManager;
+import repo.UserManager;
 import model.User;
 
 import javax.annotation.PostConstruct;

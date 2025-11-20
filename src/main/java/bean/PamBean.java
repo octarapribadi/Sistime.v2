@@ -1,18 +1,15 @@
 package bean;
 
-import ejb.PamManager;
+import repo.PamManager;
 import model.KategoriPam;
 import model.Pam;
 import model.User;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.jboss.logging.Logger;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 import org.primefaces.model.file.UploadedFileWrapper;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -23,9 +20,6 @@ import javax.inject.Named;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Named

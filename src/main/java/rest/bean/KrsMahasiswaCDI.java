@@ -1,7 +1,7 @@
 package rest.bean;
 
-import ejb.KrsMahasiswaManager;
-import ejb.UserManager;
+import repo.KrsMahasiswaManager;
+import repo.UserManager;
 import model.KrsMahasiswa;
 import model.User;
 import rest.model.KrsMahasiswaDTO;

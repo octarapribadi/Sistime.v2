@@ -1,22 +1,19 @@
 package bean;
 
-import ejb.*;
+import repo.*;
 import model.*;
 import org.jboss.logging.Logger;
-import org.primefaces.component.inputnumber.InputNumber;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Named
 @ViewScoped

@@ -1,7 +1,7 @@
 package rest.service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import ejb.UserManager;
+import repo.UserManager;
 import model.User;
 
 import javax.ejb.EJB;

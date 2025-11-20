@@ -1,7 +1,7 @@
 package bean;
 
-import ejb.DosenManager;
-import ejb.KelasManager;
+import repo.DosenManager;
+import repo.KelasManager;
 import model.Dosen;
 import model.Kelas;
 import model.ProgramStudi;
@@ -14,7 +14,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.PersistenceException;
 import java.io.Serializable;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

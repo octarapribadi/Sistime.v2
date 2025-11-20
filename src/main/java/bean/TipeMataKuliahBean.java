@@ -1,11 +1,10 @@
 package bean;
 
-import ejb.TipeMataKuliahManager;
+import repo.TipeMataKuliahManager;
 import model.TipeMataKuliah;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;

@@ -1,6 +1,6 @@
 package bean.validator;
 
-import ejb.SettingsManager;
+import repo.SettingsManager;
 import org.jboss.logging.Logger;
 
 import javax.ejb.EJB;
