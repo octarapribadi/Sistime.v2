@@ -1,7 +1,7 @@
 package repo;
 
 
-import model.RegistrasiMahasiswa;
+import entity.RegistrasiMahasiswa;
 import org.jboss.logging.Logger;
 
 import javax.annotation.PostConstruct;

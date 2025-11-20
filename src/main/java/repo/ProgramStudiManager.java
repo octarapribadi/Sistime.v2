@@ -1,6 +1,6 @@
 package repo;
 
-import model.ProgramStudi;
+import entity.ProgramStudi;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

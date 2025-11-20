@@ -1,6 +1,6 @@
 package repo;
 
-import model.User;
+import entity.User;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -15,8 +15,6 @@ public class UserManager {
     @PersistenceContext
     EntityManager em;
 
-    User user;
-
     public List<User> findAll() {
         Query qry = em.createQuery("select u from User u");
         List resultList = qry.getResultList();
@@ -26,7 +24,7 @@ public class UserManager {
     public User findUser(String username) {
         try {
             Query qry = em.createQuery("select u from User u where u.username=?1").setParameter(1, username);
-            user = (User) qry.getSingleResult();
+            User user = (User) qry.getSingleResult();
             return user;
         } catch (NoResultException ex) {
             return null;

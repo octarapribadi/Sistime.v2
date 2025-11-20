@@ -1,6 +1,6 @@
 package repo;
 
-import model.Roles;
+import entity.Roles;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

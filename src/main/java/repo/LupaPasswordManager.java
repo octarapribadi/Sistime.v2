@@ -1,6 +1,6 @@
 package repo;
 
-import model.LupaPassword;
+import entity.LupaPassword;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

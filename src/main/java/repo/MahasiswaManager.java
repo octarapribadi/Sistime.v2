@@ -1,6 +1,6 @@
 package repo;
 
-import model.Mahasiswa;
+import entity.Mahasiswa;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -30,9 +30,14 @@ public class MahasiswaManager {
         try {
             TypedQuery<Mahasiswa> query = em.createQuery("select m from Mahasiswa m " +
                             "join fetch m.user u " +
-                            "join fetch u.statusMahasiswa sm " +
-                            "join fetch sm.kelas k " +
-                            "join fetch m.programStudi p " +
+                            "left join fetch u.statusMahasiswa sm " +
+                            "left join fetch sm.kelas k " +
+                            "left join fetch m.sekolah " +
+                            "left join fetch m.agama " +
+                            "left join fetch m.kampus " +
+                            "left join fetch m.programStudi " +
+                            "left join fetch m.waktuKuliah " +
+                            "left join fetch m.status " +
                             "where sm.nim=:nim", Mahasiswa.class)
                     .setParameter("nim", nim);
             return query.getSingleResult();

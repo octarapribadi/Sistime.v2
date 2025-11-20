@@ -1,6 +1,6 @@
 package repo;
 
-import model.Pam;
+import entity.Pam;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

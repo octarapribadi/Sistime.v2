@@ -1,6 +1,6 @@
 package repo;
 
-import model.TipeMataKuliah;
+import entity.TipeMataKuliah;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

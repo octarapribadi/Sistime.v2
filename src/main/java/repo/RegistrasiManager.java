@@ -1,6 +1,6 @@
 package repo;
 
-import model.Registrasi;
+import entity.Registrasi;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

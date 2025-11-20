@@ -1,6 +1,6 @@
 package repo;
 
-import model.UserRole;
+import entity.UserRole;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

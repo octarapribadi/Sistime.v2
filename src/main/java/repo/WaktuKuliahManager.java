@@ -1,6 +1,6 @@
 package repo;
 
-import model.WaktuKuliah;
+import entity.WaktuKuliah;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

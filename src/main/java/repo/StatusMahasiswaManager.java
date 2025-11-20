@@ -1,7 +1,7 @@
 package repo;
 
-import model.StatusMahasiswa;
-import model.User;
+import entity.StatusMahasiswa;
+import entity.User;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

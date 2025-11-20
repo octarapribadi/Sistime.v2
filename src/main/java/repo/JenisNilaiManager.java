@@ -1,6 +1,6 @@
 package repo;
 
-import model.JenisNilai;
+import entity.JenisNilai;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

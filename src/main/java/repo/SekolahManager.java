@@ -1,6 +1,6 @@
 package repo;
 
-import model.Sekolah;
+import entity.Sekolah;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

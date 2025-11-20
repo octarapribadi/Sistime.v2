@@ -1,6 +1,6 @@
 package repo;
 
-import model.Pengumuman;
+import entity.Pengumuman;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

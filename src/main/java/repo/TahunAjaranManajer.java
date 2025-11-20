@@ -1,6 +1,6 @@
 package repo;
 
-import model.TahunAjaran;
+import entity.TahunAjaran;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

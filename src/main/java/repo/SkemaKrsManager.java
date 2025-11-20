@@ -1,6 +1,6 @@
 package repo;
 
-import model.SkemaKrs;
+import entity.SkemaKrs;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

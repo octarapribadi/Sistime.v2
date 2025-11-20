@@ -1,13 +1,12 @@
 package repo;
 
-import model.Dokumen;
-import model.JenisDokumen;
+import entity.Dokumen;
+import entity.JenisDokumen;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped

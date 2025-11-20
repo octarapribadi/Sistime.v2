@@ -1,6 +1,6 @@
 package repo;
 
-import model.Agama;
+import entity.Agama;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

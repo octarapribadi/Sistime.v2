@@ -1,12 +1,10 @@
 package repo;
 
-import model.KrsMahasiswa;
-import model.Skedul;
-import model.User;
+import entity.KrsMahasiswa;
+import entity.Skedul;
+import entity.User;
 import org.jboss.logging.Logger;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.*;
 import java.util.List;

@@ -1,7 +1,7 @@
 package repo;
 
-import model.Kelas;
-import model.Skedul;
+import entity.Kelas;
+import entity.Skedul;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

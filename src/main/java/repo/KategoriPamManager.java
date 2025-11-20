@@ -1,7 +1,7 @@
 package repo;
 
 
-import model.KategoriPam;
+import entity.KategoriPam;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,6 +1,6 @@
 package repo;
 
-import model.SkemaNilaiDetail;
+import entity.SkemaNilaiDetail;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

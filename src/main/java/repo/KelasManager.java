@@ -1,6 +1,6 @@
 package repo;
 
-import model.Kelas;
+import entity.Kelas;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,7 +1,7 @@
 package repo;
 
-import model.MataKuliah;
-import model.Skedul;
+import entity.MataKuliah;
+import entity.Skedul;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

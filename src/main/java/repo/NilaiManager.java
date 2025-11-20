@@ -1,8 +1,8 @@
 package repo;
 
-import model.KrsMahasiswa;
-import model.Nilai;
-import model.User;
+import entity.KrsMahasiswa;
+import entity.Nilai;
+import entity.User;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,6 +1,6 @@
 package repo;
 
-import model.Kampus;
+import entity.Kampus;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

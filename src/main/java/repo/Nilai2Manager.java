@@ -1,12 +1,13 @@
 package repo;
 
-import model.JenisNilai;
-import model.KrsMahasiswa;
-import model.Nilai2;
+import entity.JenisNilai;
+import entity.KrsMahasiswa;
+import entity.Nilai2;
 import org.jboss.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
@@ -18,7 +19,7 @@ public class Nilai2Manager {
     @PersistenceContext
     EntityManager em;
 
-    @EJB
+    @Inject
     JenisNilaiManager jnManager;
 
     public List<Nilai2> findAllNilaiByKrsMahasiswas(List<KrsMahasiswa> krs) {

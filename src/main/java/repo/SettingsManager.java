@@ -1,6 +1,6 @@
 package repo;
 
-import model.Setting;
+import entity.Setting;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

@@ -1,6 +1,6 @@
 package repo;
 
-import model.StatusPendaftaran;
+import entity.StatusPendaftaran;
 import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;

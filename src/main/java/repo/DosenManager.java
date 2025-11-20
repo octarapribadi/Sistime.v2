@@ -1,6 +1,6 @@
 package repo;
 
-import model.Dosen;
+import entity.Dosen;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

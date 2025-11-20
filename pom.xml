@@ -13,7 +13,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <properties>
         <!--<maven.compiler.release>11</maven.compiler.release>-->
         <version.wildfly.maven.plugin>3.0.2.Final</version.wildfly.maven.plugin>
-        <hibernate-tools-maven-plugin.version>5.6.14.Final</hibernate-tools-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -33,61 +32,19 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.6.10.Final</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.2.0</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
             <scope>provided</scope>
         </dependency>
-        <!--
-                <dependency>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>${version.wildfly.maven.plugin}</version>
-                </dependency>
-        -->
-        <!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>14.0.2</version>
-        </dependency>
 
         <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-extensions</artifactId>
-            <version>14.0.2</version>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.5.3.Final</version>
+            <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>5.2.3</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>software.xdev</groupId>
-            <artifactId>chartjs-java-model</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.17.0</version>
-        </dependency>
-
 
     </dependencies>
 

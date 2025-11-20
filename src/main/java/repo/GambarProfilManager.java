@@ -1,6 +1,6 @@
 package repo;
 
-import model.GambarProfil;
+import entity.GambarProfil;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
