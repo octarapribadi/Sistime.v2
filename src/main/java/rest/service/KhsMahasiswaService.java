@@ -1,6 +1,6 @@
 package rest.service;
 
-import bean.KhsMahasiswa2Bean;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jboss.logging.Logger;
 import rest.bean.KhsMahasiswaCDI;
 import rest.model.KhsDTO;
@@ -17,6 +17,7 @@ import java.util.List;
 
 @Path("/khs")
 @Produces(MediaType.APPLICATION_JSON)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class KhsMahasiswaService {
 
     @Inject

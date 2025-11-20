@@ -1,44 +1,61 @@
 package rest.model;
 
-import model.KrsMahasiswa;
-import model.MataKuliah;
-import model.Nilai2;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KhsDTO {
-    long id;
-    KrsMahasiswa krsMahasiswa;
-    MataKuliah mataKuliah;
-    Nilai2 nilai;
+    long idKrs;
+    String namaMatakuliah;
+    String kodeMatakuliah;
+    int sks;
+    int semester;
+    Map<String, Double> nilais = new HashMap<>();
 
-    public long getId() {
-        return id;
+    public long getIdKrs() {
+        return idKrs;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdKrs(long idKrs) {
+        this.idKrs = idKrs;
     }
 
-    public KrsMahasiswa getKrsMahasiswa() {
-        return krsMahasiswa;
+    public String getNamaMatakuliah() {
+        return namaMatakuliah;
     }
 
-    public void setKrsMahasiswa(KrsMahasiswa krsMahasiswa) {
-        this.krsMahasiswa = krsMahasiswa;
+    public void setNamaMatakuliah(String namaMatakuliah) {
+        this.namaMatakuliah = namaMatakuliah;
     }
 
-    public MataKuliah getMataKuliah() {
-        return mataKuliah;
+    public Map<String, Double> getNilais() {
+        return nilais;
     }
 
-    public void setMataKuliah(MataKuliah mataKuliah) {
-        this.mataKuliah = mataKuliah;
+    public void setNilais(Map<String, Double> nilais) {
+        this.nilais = nilais;
     }
 
-    public Nilai2 getNilai() {
-        return nilai;
+    public String getKodeMatakuliah() {
+        return kodeMatakuliah;
     }
 
-    public void setNilai(Nilai2 nilai) {
-        this.nilai = nilai;
+    public void setKodeMatakuliah(String kodeMatakuliah) {
+        this.kodeMatakuliah = kodeMatakuliah;
+    }
+
+    public int getSks() {
+        return sks;
+    }
+
+    public void setSks(int sks) {
+        this.sks = sks;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
     }
 }
