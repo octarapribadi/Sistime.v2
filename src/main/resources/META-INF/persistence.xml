@@ -7,7 +7,7 @@
 	<persistence-unit name="Sistime"
 		transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:/MySql</jta-data-source>
+		<jta-data-source>java:/sistimev2DS</jta-data-source>
 		<properties>
 			<property name="hibernate.hbm2dll.auto" value="validate"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
