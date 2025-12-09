@@ -46,6 +46,20 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.eclipse.microprofile.jwt</groupId>
+            <artifactId>microprofile-jwt-auth-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-jwt-build</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <profiles>
