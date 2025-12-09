@@ -6,56 +6,11 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    <!--
-    <filter>
-      <filter-name>FileUpload</filter-name>
-      <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-    </filter>
-    <filter-mapping>
-      <filter-name>FileUpload</filter-name>
-      <servlet-name>Faces Servlet</servlet-name>
-    </filter-mapping>
-  -->
-
-    <!--
-    <session-config>
-      <session-timeout>1800</session-timeout>
-      <cookie-config>
-        <max-age>10</max-age>
-      </cookie-config>
-    </session-config>
-    -->
-    <!--
-  <env-entry>
-    <env-entry-name>myentry</env-entry-name>
-    <env-entry-type>java.lang.String</env-entry-type>
-    <env-entry-value>/myentry/blabla</env-entry-value>
-  </env-entry>
-
-  -->
 
     <context-param>
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
-    <!--
-    <context-param>
-      <param-name>primefaces.THEME</param-name>
-      <param-value>saga</param-value>
-    </context-param>
-
-    -->
-    <!--
-    <context-param>
-      <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-      <param-value>6LftcXQjAAAAANgA_Z8XpTGjFq9DzultOr3D7FUF</param-value>
-    </context-param>
-
-    <context-param>
-      <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-      <param-value>6LftcXQjAAAAAF37JW5IfaSVnhQVlYRAiiQra-ab</param-value>
-    </context-param>
-    -->
     <context-param>
         <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
         <param-value>${sistime.public_captcha_key}</param-value>
@@ -75,7 +30,7 @@
         <param-name>sistime.pamdir</param-name>
         <param-value>pamdir</param-value>
     </context-param>
-    
+
     <context-param>
         <param-name>sistime.size_limit</param-name>
         <param-value>3145728</param-value>
@@ -86,64 +41,11 @@
         <param-value>true</param-value>
     </context-param>
 
-<!--    <context-param>-->
-<!--        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>-->
-<!--        <param-value>true</param-value>-->
-<!--    </context-param>-->
-    
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>
+    <!--    <context-param>-->
+    <!--        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>-->
+    <!--        <param-value>true</param-value>-->
+    <!--    </context-param>-->
 
-    <security-constraint>
-        <display-name>Halaman mahasiswa</display-name>
-        <web-resource-collection>
-            <web-resource-name>Protected page</web-resource-name>
-            <url-pattern>/mahasiswa/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>mahasiswa</role-name>
-        </auth-constraint>
-    </security-constraint>
-
-<!--    <security-constraint>-->
-<!--        <web-resource-collection>-->
-<!--            <web-resource-name>Protected</web-resource-name>-->
-<!--            <url-pattern>/restservice/*</url-pattern>-->
-<!--        </web-resource-collection>-->
-<!--        <auth-constraint>-->
-<!--            <role-name>administrator</role-name>-->
-<!--        </auth-constraint>-->
-<!--    </security-constraint>-->
-
-    <security-constraint>
-        <display-name>Halaman admin</display-name>
-        <web-resource-collection>
-            <web-resource-name>Protected page</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>administrator</role-name>
-            <role-name>marketing</role-name>
-            <role-name>keuangan</role-name>
-            <role-name>prodi</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <!--
-        <security-constraint>
-            <web-resource-collection>
-                <web-resource-name>Protected Page</web-resource-name>
-                <url-pattern>/admin/akademik/krs/lihat_pengisiankrs.xhtml</url-pattern>
-            </web-resource-collection>
-            <auth-constraint/>
-        </security-constraint>
-    -->
     <security-role>
         <role-name>administrator</role-name>
     </security-role>
@@ -160,24 +62,21 @@
         <role-name>prodi</role-name>
     </security-role>
 
+    <security-constraint>
+        <display-name>Halaman admin</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected REST</web-resource-name>
+            <url-pattern>/rest/api/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrator</role-name>
+            <role-name>mahasiswa</role-name>
+        </auth-constraint>
+    </security-constraint>
+
     <login-config>
-        <auth-method>FORM</auth-method>
-        <!--<realm-name>SistimeDBSecurityDomain</realm-name>-->
-        <form-login-config>
-            <form-login-page>/index.xhtml</form-login-page>
-            <form-error-page>/error/error.xhtml</form-error-page>
-        </form-login-config>
+        <auth-method>MP-JWT</auth-method>
+        <realm-name>MP-JWT</realm-name>
     </login-config>
-    <error-page>
-        <location>/error/error.xhtml</location>
-    </error-page>
-    <error-page>
-        <error-code>403</error-code>
-        <location>/error/error403.xhtml</location>
-    </error-page>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/error/error404.xhtml</location>
-    </error-page>
 
 </web-app>

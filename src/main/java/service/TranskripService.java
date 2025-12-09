@@ -6,6 +6,7 @@ import entity.Mahasiswa;
 import org.jboss.logging.Logger;
 import repo.MahasiswaManager;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,6 +27,7 @@ public class TranskripService {
 
     @GET
     @Path("{idUser}")
+    @RolesAllowed("mahasiswa")
     public Response getTranskrip(@PathParam("idUser") long idUser) {
         try {
             Mahasiswa selectedMahasiswa = mahasiswaManager.findMahasiswaByIdUser(idUser);

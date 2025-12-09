@@ -5,6 +5,7 @@ import org.jboss.logging.Logger;
 import business.KhsMahasiswaCDI;
 import dto.KhsDTO;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,6 +26,7 @@ public class KhsMahasiswaService {
 
     @GET
     @Path("{iduser}")
+    @RolesAllowed("mahasiswa")
     public Response getKhs(@PathParam("iduser") long idUser){
         try{
             List<KhsDTO> khsDTOList = khsMahasiswaCDI.getKhs(idUser);
