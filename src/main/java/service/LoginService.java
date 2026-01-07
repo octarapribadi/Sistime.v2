@@ -30,10 +30,9 @@ public class LoginService {
             String username = login.getUsername();
             String password = login.getPassword();
             User user = userManager.findUserByUsername(username);
-            Boolean status = BCrypt.checkpw(password, user.getPassword());
-            System.out.println("Status"+status);
+            Boolean status = BCrypt.checkpw(password,user.getPassword());
             if(status)
-                return Response.status(200).entity(user).build();
+                return Response.status(200).entity("{\"token\":\"ok\"}").build();
             else
                 return Response.status(401).entity("Kredensial salah").build();
         }
