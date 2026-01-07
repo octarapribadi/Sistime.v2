@@ -66,4 +66,16 @@ public class UserManager {
             return null;
         }
     }
+
+    public User findUserByUsername(String username) {
+        try {
+            Query qry = em.createQuery("select u from User u where u.username=?1")
+                    .setParameter(1, username);
+            return (User) qry.getSingleResult();
+        }
+        catch(NoResultException ex) {
+            return null;
+        }
+    }
+
 }
