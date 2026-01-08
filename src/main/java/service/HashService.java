@@ -11,7 +11,7 @@ public class HashService {
 
     @POST
     public Response hash(String message){
-        String hashWithSalt = BCrypt.hashpw(message, BCrypt.gensalt());
+        String hashWithSalt = BCrypt.hashpw(message, BCrypt.gensalt(10));
         return Response.ok(hashWithSalt).build();
     }
 }

@@ -1,6 +1,6 @@
 package service;
 
-import business.TranskripCDI;
+import business.TranskripBean;
 import dto.TranskripDTO;
 import entity.Mahasiswa;
 import org.jboss.logging.Logger;
@@ -20,7 +20,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class TranskripService {
     @Inject
-    TranskripCDI transkripCDI;
+    TranskripBean transkripBean;
 
     @Inject
     MahasiswaManager mahasiswaManager;
@@ -32,7 +32,7 @@ public class TranskripService {
         try {
             Mahasiswa selectedMahasiswa = mahasiswaManager.findMahasiswaByIdUser(idUser);
             if (selectedMahasiswa != null) {
-                List<TranskripDTO> transkrips = transkripCDI.getTranskripByIdUser(idUser);
+                List<TranskripDTO> transkrips = transkripBean.getTranskripByIdUser(idUser);
                 return Response.ok(transkrips, MediaType.APPLICATION_JSON).build();
             } else
                 return Response.status(Response.Status.NOT_FOUND).entity("[]").build();

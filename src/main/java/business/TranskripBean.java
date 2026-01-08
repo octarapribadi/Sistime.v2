@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import java.util.*;
 
 @RequestScoped
-public class TranskripCDI {
+public class TranskripBean {
     @Inject
     MahasiswaManager mahasiswaManager;
 

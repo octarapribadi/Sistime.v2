@@ -75,7 +75,8 @@
 <!--    </security-constraint>-->
 
     <login-config>
-        <auth-method>FORM</auth-method>
+        <auth-method>MP-JWT</auth-method>
+        <realm-name>MP-JWT</realm-name>
     </login-config>
 
 </web-app>

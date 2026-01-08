@@ -6,7 +6,6 @@ import entity.KrsMahasiswa;
 import entity.User;
 import dto.KrsMahasiswaDTO;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RequestScoped
-public class KrsMahasiswaCDI implements Serializable {
+public class KrsMahasiswaBean implements Serializable {
     @Inject
     KrsMahasiswaManager krsMahasiswaManager;
 

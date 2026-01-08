@@ -2,7 +2,7 @@ package service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jboss.logging.Logger;
-import business.KhsMahasiswaCDI;
+import business.KhsMahasiswaBean;
 import dto.KhsDTO;
 
 import javax.annotation.security.RolesAllowed;
@@ -22,14 +22,14 @@ import java.util.List;
 public class KhsMahasiswaService {
 
     @Inject
-    KhsMahasiswaCDI khsMahasiswaCDI;
+    KhsMahasiswaBean khsMahasiswaBean;
 
     @GET
     @Path("{iduser}")
     @RolesAllowed("mahasiswa")
     public Response getKhs(@PathParam("iduser") long idUser){
         try{
-            List<KhsDTO> khsDTOList = khsMahasiswaCDI.getKhs(idUser);
+            List<KhsDTO> khsDTOList = khsMahasiswaBean.getKhs(idUser);
             return Response.ok(khsDTOList,MediaType.APPLICATION_JSON).build();
         }
         catch(Exception ex){

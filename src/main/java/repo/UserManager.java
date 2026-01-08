@@ -22,28 +22,19 @@ public class UserManager {
     }
 
     public User findUser(String username) {
-        try {
-            Query qry = em.createQuery("select u from User u where u.username=?1").setParameter(1, username);
-            User user = (User) qry.getSingleResult();
-            return user;
-        } catch (NoResultException ex) {
-            return null;
-        }
+        Query qry = em.createQuery("select u from User u where u.username=?1").setParameter(1, username);
+        User user = (User) qry.getSingleResult();
+        return user;
     }
 
     public List<User> findUsersByKodeKelas(String kodeKelas) {
-        try {
-            Query qry = em.createQuery("select u from User u " +
-                            "join fetch u.mahasiswa m " +
-                            "join fetch u.statusMahasiswa s " +
-                            "where s.kelas.kodeKelas=?1 " +
-                            "order by s.nim")
-                    .setParameter(1, kodeKelas);
-            return qry.getResultList();
-        } catch (Exception ex) {
-            Logger.getLogger(UserManager.class).error(ex.getMessage());
-            return null;
-        }
+        Query qry = em.createQuery("select u from User u " +
+                        "join fetch u.mahasiswa m " +
+                        "join fetch u.statusMahasiswa s " +
+                        "where s.kelas.kodeKelas=?1 " +
+                        "order by s.nim")
+                .setParameter(1, kodeKelas);
+        return qry.getResultList();
     }
 
     public void persist(User user) {
@@ -57,25 +48,15 @@ public class UserManager {
     }
 
     public User findUserByUserId(long userId) {
-        try {
-            Query qry = em.createQuery("select u from User u where u.id=?1")
-                    .setParameter(1, userId);
-            return (User)qry.getSingleResult();
-        } catch (Exception ex) {
-            Logger.getLogger(UserManager.class).error(ex.getMessage());
-            return null;
-        }
+        Query qry = em.createQuery("select u from User u where u.id=?1")
+                .setParameter(1, userId);
+        return (User) qry.getSingleResult();
     }
 
     public User findUserByUsername(String username) {
-        try {
-            Query qry = em.createQuery("select u from User u where u.username=?1")
-                    .setParameter(1, username);
-            return (User) qry.getSingleResult();
-        }
-        catch(NoResultException ex) {
-            return null;
-        }
+        Query qry = em.createQuery("select u from User u where u.username=?1")
+                .setParameter(1, username);
+        return (User) qry.getSingleResult();
     }
 
 }

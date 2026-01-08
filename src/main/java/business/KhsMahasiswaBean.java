@@ -6,14 +6,13 @@ import entity.KrsMahasiswa;
 import entity.Nilai2;
 import dto.KhsDTO;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @RequestScoped
-public class KhsMahasiswaCDI {
+public class KhsMahasiswaBean {
     @Inject
     Nilai2Manager nilai2Manager;
 

@@ -16,9 +16,6 @@ import javax.ws.rs.core.Response;
 
 @Path("/login")
 public class LoginService {
-
-//    SecurityDomain domain = SecurityDomain.getCurrent();
-//    SecurityIdentity identity;
     @Inject
     UserManager userManager;
 
@@ -30,7 +27,7 @@ public class LoginService {
             String username = login.getUsername();
             String password = login.getPassword();
             User user = userManager.findUserByUsername(username);
-            Boolean status = BCrypt.checkpw(password,user.getPassword());
+            boolean status = BCrypt.checkpw(password,user.getPassword());
             if(status)
                 return Response.status(200).entity("{\"token\":\"ok\"}").build();
             else

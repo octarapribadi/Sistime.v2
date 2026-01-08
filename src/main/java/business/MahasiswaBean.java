@@ -2,14 +2,13 @@ package business;
 
 import entity.Mahasiswa;
 import repo.MahasiswaManager;
-import repo.UserManager;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
 
 @RequestScoped
-public class MahasiswaCDI implements Serializable {
+public class MahasiswaBean implements Serializable {
     @Inject
     MahasiswaManager mahasiswaManager;
 

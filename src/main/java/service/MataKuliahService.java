@@ -2,7 +2,7 @@ package service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import entity.MataKuliah;
-import business.MataKuliahCDI;
+import business.MataKuliahBean;
 import dto.MataKuliahDTO;
 
 import javax.inject.Inject;
@@ -20,11 +20,11 @@ import java.util.List;
 public class MataKuliahService {
 
     @Inject
-    MataKuliahCDI mataKuliahCDI;
+    MataKuliahBean mataKuliahBean;
 
     @GET
     public Response getMatakuliah() {
-        List<MataKuliah> matakuliahs = mataKuliahCDI.getMataKuliah();
+        List<MataKuliah> matakuliahs = mataKuliahBean.getMataKuliah();
         List<MataKuliahDTO> mataKuliahDTOS = new ArrayList<>();
         matakuliahs.forEach(m->{
             MataKuliahDTO matkul = new MataKuliahDTO();

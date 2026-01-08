@@ -1,6 +1,6 @@
 package service;
 
-import business.MahasiswaCDI;
+import business.MahasiswaBean;
 import entity.Mahasiswa;
 
 import javax.inject.Inject;
@@ -16,12 +16,12 @@ import javax.ws.rs.core.Response;
 public class MahasiswaService {
 
     @Inject
-    MahasiswaCDI mahasiswaCDI;
+    MahasiswaBean mahasiswaBean;
 
     @GET
     @Path("{nim}")
     public Response getMahasiswaByNim(@PathParam("nim") String nim) {
-        Mahasiswa dto = mahasiswaCDI.getMahasiswaByNim(nim);
+        Mahasiswa dto = mahasiswaBean.getMahasiswaByNim(nim);
         if (dto != null)
             return Response.ok(dto, MediaType.APPLICATION_JSON).build();
         else
