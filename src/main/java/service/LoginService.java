@@ -1,10 +1,10 @@
 package service;
 
+import bean.AuthBean;
+import bean.TokenBean;
 import dto.Login;
-import entity.User;
 import org.jboss.logging.Logger;
-import org.mindrot.jbcrypt.BCrypt;
-import repo.UserManager;
+import repo.UserRoleManager;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -17,25 +17,34 @@ import javax.ws.rs.core.Response;
 @Path("/login")
 public class LoginService {
     @Inject
-    UserManager userManager;
+    AuthBean authBean;
+
+    @Inject
+    TokenBean tokenBean;
+
+    @Inject
+    UserRoleManager userRoleManager;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(Login login) {
-        try{
+        try {
             String username = login.getUsername();
             String password = login.getPassword();
-            User user = userManager.findUserByUsername(username);
-            boolean status = BCrypt.checkpw(password,user.getPassword());
-            if(status)
-                return Response.status(200).entity("{\"token\":\"ok\"}").build();
-            else
+            if (username == null || password == null)
+                Response.status(Response.Status.BAD_REQUEST).build();
+            boolean status = authBean.auth(username, password);
+            if (!status)
                 return Response.status(401).entity("Kredensial salah").build();
-        }
-        catch(Exception e){
+
+
+
+            return Response.status(200).entity("").build();
+
+        } catch (Exception e) {
             Logger.getLogger(LoginService.class).error(e.getMessage());
-            return Response.status(500).entity(e.getMessage()).build();
+            return Response.status(500).build();
         }
 
 

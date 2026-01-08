@@ -1,4 +1,4 @@
-package business;
+package bean;
 
 import io.smallrye.jwt.build.Jwt;
 

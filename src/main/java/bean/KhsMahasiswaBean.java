@@ -1,4 +1,4 @@
-package business;
+package bean;
 
 import repo.KrsMahasiswaManager;
 import repo.Nilai2Manager;

@@ -1,6 +1,6 @@
 package service;
 
-import business.TranskripBean;
+import bean.TranskripBean;
 import dto.TranskripDTO;
 import entity.Mahasiswa;
 import org.jboss.logging.Logger;

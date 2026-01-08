@@ -2,7 +2,7 @@ package service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jboss.logging.Logger;
-import business.KhsMahasiswaBean;
+import bean.KhsMahasiswaBean;
 import dto.KhsDTO;
 
 import javax.annotation.security.RolesAllowed;

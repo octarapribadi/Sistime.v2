@@ -1,7 +1,7 @@
 package service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import business.KrsMahasiswaBean;
+import bean.KrsMahasiswaBean;
 import dto.KrsMahasiswaDTO;
 
 import javax.inject.Inject;

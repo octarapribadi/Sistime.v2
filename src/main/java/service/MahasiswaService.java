@@ -1,6 +1,6 @@
 package service;
 
-import business.MahasiswaBean;
+import bean.MahasiswaBean;
 import entity.Mahasiswa;
 
 import javax.inject.Inject;

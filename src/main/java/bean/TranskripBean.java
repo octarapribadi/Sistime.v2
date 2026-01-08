@@ -1,4 +1,4 @@
-package business;
+package bean;
 
 import dto.TranskripDTO;
 import entity.KrsMahasiswa;

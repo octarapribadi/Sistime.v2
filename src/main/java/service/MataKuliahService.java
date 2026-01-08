@@ -2,7 +2,7 @@ package service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import entity.MataKuliah;
-import business.MataKuliahBean;
+import bean.MataKuliahBean;
 import dto.MataKuliahDTO;
 
 import javax.inject.Inject;

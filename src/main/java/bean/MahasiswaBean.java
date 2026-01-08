@@ -1,4 +1,4 @@
-package business;
+package bean;
 
 import entity.Mahasiswa;
 import repo.MahasiswaManager;
