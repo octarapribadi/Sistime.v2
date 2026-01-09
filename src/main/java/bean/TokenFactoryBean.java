@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @ApplicationScoped
-public class TokenBean {
+public class TokenFactoryBean {
     public String generate(String username, String role, long expiredInMin){
         return Jwt.issuer("octara-issuer")
                 .upn(username)

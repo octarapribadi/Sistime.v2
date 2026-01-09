@@ -1,7 +1,7 @@
 package service;
 
 import bean.AuthBean;
-import bean.TokenBean;
+import bean.TokenFactoryBean;
 import dto.Login;
 import org.jboss.logging.Logger;
 import repo.UserRoleManager;
@@ -13,6 +13,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 @Path("/login")
 public class LoginService {
@@ -20,10 +22,11 @@ public class LoginService {
     AuthBean authBean;
 
     @Inject
-    TokenBean tokenBean;
+    TokenFactoryBean tokenFactoryBean;
 
     @Inject
     UserRoleManager userRoleManager;
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -33,18 +36,26 @@ public class LoginService {
             String username = login.getUsername();
             String password = login.getPassword();
             if (username == null || password == null)
-                Response.status(Response.Status.BAD_REQUEST).build();
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Username atau password tidak boleh kosong")
+                        .build();
             boolean status = authBean.auth(username, password);
             if (!status)
-                return Response.status(401).entity("Kredensial salah").build();
+                return Response.status(401)
+                        .entity("Kredensial salah")
+                        .build();
 
+            String token = tokenFactoryBean.generate(username, "administrator", 120);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
 
-
-            return Response.status(200).entity("").build();
+            return Response.status(200).entity(response).build();
 
         } catch (Exception e) {
-            Logger.getLogger(LoginService.class).error(e.getMessage());
-            return Response.status(500).build();
+            Logger.getLogger(LoginService.class).error("error", e);
+            return Response.status(500)
+                    .entity("Terjadi kesalahan pada server")
+                    .build();
         }
 
 
