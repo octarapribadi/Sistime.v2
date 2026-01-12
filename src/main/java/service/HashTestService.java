@@ -11,8 +11,9 @@ import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-class MessageToHash{
+class HashRequest{
     String message;
+    String hash;
 
     public String getMessage() {
         return message;
@@ -21,18 +22,26 @@ class MessageToHash{
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
 }
 
-@Path("/hash")
-public class HashService {
-
+@Path("/testhash")
+public class HashTestService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @POST
-    public Response hash(MessageToHash messageToHash){
-        String hashWithSalt = BCrypt.hashpw(messageToHash.getMessage(), BCrypt.gensalt(10));
-        Map<String, String> hash = new HashMap<>();
-        hash.put("hash", hashWithSalt);
-        return Response.ok(hash).build();
+    public Response hash(HashRequest hashRequest){
+        boolean status = BCrypt.checkpw(hashRequest.message, hashRequest.hash);
+        Map<String, Boolean> entity= new HashMap<>();
+        entity.put("status",status);
+        return Response.ok().entity(entity).build();
+
     }
 }

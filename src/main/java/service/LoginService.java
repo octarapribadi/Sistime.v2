@@ -39,6 +39,7 @@ public class LoginService {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("Username atau password tidak boleh kosong")
                         .build();
+            System.out.println("isi password:" + password);
             boolean status = authBean.auth(username, password);
             if (!status)
                 return Response.status(401)
