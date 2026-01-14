@@ -62,17 +62,17 @@
         <role-name>prodi</role-name>
     </security-role>
 
-<!--    <security-constraint>-->
-<!--        <display-name>Halaman admin</display-name>-->
-<!--        <web-resource-collection>-->
-<!--            <web-resource-name>Protected REST</web-resource-name>-->
-<!--            <url-pattern>/rest/api/*</url-pattern>-->
-<!--        </web-resource-collection>-->
-<!--        <auth-constraint>-->
-<!--            <role-name>administrator</role-name>-->
-<!--            <role-name>mahasiswa</role-name>-->
-<!--        </auth-constraint>-->
-<!--    </security-constraint>-->
+    <security-constraint>
+        <display-name>Halaman admin</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected REST</web-resource-name>
+            <url-pattern>/api/mahasiswa/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>administrator</role-name>
+            <role-name>mahasiswa</role-name>
+        </auth-constraint>
+    </security-constraint>
 
     <login-config>
         <auth-method>MP-JWT</auth-method>
