@@ -58,34 +58,5 @@ public class LoginService {
                     .entity("Terjadi kesalahan pada server")
                     .build();
         }
-
-
-//        try {
-//            identity = domain.authenticate(login.getUsername(), new PasswordGuessEvidence(login.getPassword().toCharArray()));
-//        } catch (RealmUnavailableException ex1) {
-//            return Response.status(Response.Status.SERVICE_UNAVAILABLE)
-//                    .entity(new ErrorResponse("AuthService tidak tersedia"))
-//                    .build();
-//        } catch (SecurityException ex2) {
-//            return Response.status(Response.Status.UNAUTHORIZED)
-//                    .entity(new ErrorResponse("Kredensial salah"))
-//                    .build();
-//        }
-//
-//        Set<String> roles = new HashSet<>();
-//        for (String role : identity.getRoles()) {
-//            roles.add(role);
-//        }
-//
-//        Instant now = Instant.now();
-//        String token = Jwt.issuer("octara-issuer")
-//                .upn(identity.getPrincipal().getName())
-//                .subject(identity.getPrincipal().getName())
-//                .groups(roles)
-//                .audience("rest-api")
-//                .issuedAt(now)
-//                .expiresAt(now.plus(2, ChronoUnit.HOURS))
-//                .sign();
-//        return Response.ok(new Token(token)).build();
     }
 }

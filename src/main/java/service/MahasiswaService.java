@@ -19,8 +19,8 @@ public class MahasiswaService {
     MahasiswaBean mahasiswaBean;
 
     @GET
-    @Path("{nim}")
-    @RolesAllowed("administrator")
+    @Path("/{nim}")
+    @RolesAllowed({"administrator"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMahasiswaByNim(@PathParam("nim") String nim) {
         Mahasiswa dto = mahasiswaBean.getMahasiswaByNim(nim);
