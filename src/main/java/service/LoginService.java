@@ -51,7 +51,7 @@ public class LoginService {
                         .build();
             List<UserRole> userRolesList = userRoleManager.findUserRoleByUsername(username);
             Set<String> userRolesSet = userRolesList.stream().map(userRole -> userRole.getRole().getRole()).collect(Collectors.toSet());
-            String token = tokenFactoryBean.generate(username, userRolesSet, 120);
+            String token = tokenFactoryBean.generate(username, userRolesSet);
             Map<String, String> response = new HashMap<>();
             response.put("token", token);
 

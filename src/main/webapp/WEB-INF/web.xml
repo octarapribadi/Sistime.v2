@@ -3,14 +3,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <display-name>Sistem Informasi STMIK TIME</display-name>
-<!--    <welcome-file-list>-->
-    <!--        <welcome-file>index.xhtml</welcome-file>-->
-    <!--    </welcome-file-list>-->
 
-    <context-param>
-        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
-        <param-value>true</param-value>
-    </context-param>
     <context-param>
         <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
         <param-value>${sistime.public_captcha_key}</param-value>
@@ -36,46 +29,10 @@
         <param-value>3145728</param-value>
     </context-param>
 
-    <context-param>
-        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
-        <param-value>true</param-value>
-    </context-param>
 
     <context-param>
         <param-name>resteasy.role.based.security</param-name>
         <param-value>true</param-value>
     </context-param>
-
-    <!--    <context-param>-->
-    <!--        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>-->
-    <!--        <param-value>true</param-value>-->
-    <!--    </context-param>-->
-
-<!--    <security-role>-->
-<!--        <role-name>administrator</role-name>-->
-<!--    </security-role>-->
-<!--    <security-role>-->
-<!--        <role-name>mahasiswa</role-name>-->
-<!--    </security-role>-->
-<!--    <security-role>-->
-<!--        <role-name>marketing</role-name>-->
-<!--    </security-role>-->
-<!--    <security-role>-->
-<!--        <role-name>keuangan</role-name>-->
-<!--    </security-role>-->
-<!--    <security-role>-->
-<!--        <role-name>prodi</role-name>-->
-<!--    </security-role>-->
-
-<!--    <security-constraint>-->
-<!--        <display-name>Halaman Kredensial</display-name>-->
-<!--        <web-resource-collection>-->
-<!--            <web-resource-name>Protected</web-resource-name>-->
-<!--            <url-pattern>/api/mahasiswa/*</url-pattern>-->
-<!--        </web-resource-collection>-->
-<!--        <auth-constraint>-->
-<!--            <role-name>mahasiswa</role-name>-->
-<!--        </auth-constraint>-->
-<!--    </security-constraint>-->
 
 </web-app>
