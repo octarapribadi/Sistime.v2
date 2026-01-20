@@ -3,7 +3,10 @@ package service;
 import bean.MahasiswaBean;
 import entity.Mahasiswa;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,12 +18,17 @@ import javax.ws.rs.core.Response;
 @Path("/mahasiswa")
 public class MahasiswaService {
 
+    @PostConstruct
+    public void init(){
+        System.out.println("MahasiswaService constructed");
+    }
+
     @Inject
     MahasiswaBean mahasiswaBean;
 
     @GET
     @Path("/{nim}")
-    @RolesAllowed({"administrator"})
+    @RolesAllowed({"mahasiswa"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMahasiswaByNim(@PathParam("nim") String nim) {
         Mahasiswa dto = mahasiswaBean.getMahasiswaByNim(nim);

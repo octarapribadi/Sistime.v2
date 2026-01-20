@@ -3,9 +3,11 @@ package service;
 import bean.AuthBean;
 import bean.TokenFactoryBean;
 import dto.Login;
+import entity.UserRole;
 import org.jboss.logging.Logger;
 import repo.UserRoleManager;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -14,9 +16,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Path("/login")
+@ApplicationScoped
 public class LoginService {
     @Inject
     AuthBean authBean;
@@ -26,7 +32,6 @@ public class LoginService {
 
     @Inject
     UserRoleManager userRoleManager;
-
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -39,14 +44,14 @@ public class LoginService {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("Username atau password tidak boleh kosong")
                         .build();
-            System.out.println("isi password:" + password);
             boolean status = authBean.auth(username, password);
             if (!status)
                 return Response.status(401)
                         .entity("Kredensial salah")
                         .build();
-
-            String token = tokenFactoryBean.generate(username, "administrator", 120);
+            List<UserRole> userRolesList = userRoleManager.findUserRoleByUsername(username);
+            Set<String> userRolesSet = userRolesList.stream().map(userRole -> userRole.getRole().getRole()).collect(Collectors.toSet());
+            String token = tokenFactoryBean.generate(username, userRolesSet, 120);
             Map<String, String> response = new HashMap<>();
             response.put("token", token);
 
