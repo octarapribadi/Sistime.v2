@@ -7,7 +7,6 @@ import entity.UserRole;
 import org.jboss.logging.Logger;
 import repo.UserRoleManager;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -22,7 +21,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Path("/login")
-@ApplicationScoped
 public class LoginService {
     @Inject
     AuthBean authBean;

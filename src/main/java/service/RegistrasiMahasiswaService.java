@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("registrasimahasiswas")
+@Path("/registrasimahasiswas")
 @Produces(MediaType.APPLICATION_JSON)
 public class RegistrasiMahasiswaService {
     @Inject
