@@ -1,15 +1,11 @@
 package entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "tbl_waktu_kuliah")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idWaktukuliah")
 public class WaktuKuliah implements java.io.Serializable {
 
 
@@ -49,7 +45,6 @@ public class WaktuKuliah implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kode_kampus")
-    @JsonBackReference
     public Kampus getKampus() {
         return this.kampus;
     }
@@ -79,7 +74,6 @@ public class WaktuKuliah implements java.io.Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "waktuKuliah")
-    @JsonBackReference
     public Set<RegistrasiMahasiswa> getRegistrasiMahasiswas() {
         return this.registrasiMahasiswas;
     }
@@ -89,7 +83,6 @@ public class WaktuKuliah implements java.io.Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "waktuKuliah")
-    @JsonBackReference
     public Set<Mahasiswa> getMahasiswas() {
         return this.mahasiswas;
     }

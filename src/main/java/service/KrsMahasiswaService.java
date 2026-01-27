@@ -2,7 +2,7 @@ package service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import bean.KrsMahasiswaBean;
-import dto.KrsMahasiswaDTO;
+import dto.KrsMahasiswaDto;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -22,10 +22,10 @@ public class KrsMahasiswaService {
     @Path("{idUser}")
 
     public Response getKrs(@PathParam("idUser") long idUser) {
-        List<KrsMahasiswaDTO> krsMahasiswaDTOS = krsMahasiswaBean.getKrs(idUser);
-        if (krsMahasiswaDTOS.isEmpty())
+        List<KrsMahasiswaDto> krsMahasiswaDtos = krsMahasiswaBean.getKrs(idUser);
+        if (krsMahasiswaDtos.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).entity("{}").build();
         else
-            return Response.ok(krsMahasiswaDTOS).build();
+            return Response.ok(krsMahasiswaDtos).build();
     }
 }

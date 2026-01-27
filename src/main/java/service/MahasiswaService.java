@@ -41,7 +41,7 @@ public class MahasiswaService {
         } catch (NoResultException ex) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } catch (Exception ex) {
-            Logger.getLogger(MahasiswaService.class).error(ex);
+            Logger.getLogger(this.getClass()).error(ex);
             return Response.serverError().build();
         }
     }
@@ -51,7 +51,6 @@ public class MahasiswaService {
     @RolesAllowed({"mahasiswa", "administrator"})
     public Response getMahasiswaByUserId(@PathParam("iduser") long idUser) {
         try {
-
             MahasiswaDto dto = mahasiswaBean.getMahasiswaByIdUser(idUser);
             Set<String> groups = token.getClaim("groups");
             if (groups.contains("administrator"))
@@ -62,7 +61,27 @@ public class MahasiswaService {
         } catch (NoResultException ex) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } catch (Exception ex) {
-            Logger.getLogger(MahasiswaService.class).error(ex);
+            Logger.getLogger(this.getClass()).error(ex);
+            return Response.serverError().build();
+        }
+    }
+
+    @PATCH
+    @Path("/iduser/{iduser}")
+    @RolesAllowed({"mahasiswa", "administrator"})
+    public Response setMahasiswaByUserId(@PathParam("iduser") long idUser, MahasiswaDto dto) {
+        try {
+            Set<String> groups = token.getClaim("groups");
+            if (groups.contains("administrator")) {
+                mahasiswaBean.patchMahasiswaByIdUser(idUser, dto);
+                return Response.ok().build();
+            }
+            if (!token.getClaim("sub").equals(String.valueOf(idUser)))
+                return Response.status(Response.Status.FORBIDDEN).build();
+            mahasiswaBean.patchMahasiswaByIdUser(idUser, dto);
+            return Response.ok().build();
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass()).error(ex);
             return Response.serverError().build();
         }
     }

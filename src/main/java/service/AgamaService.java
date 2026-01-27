@@ -1,6 +1,6 @@
 package service;
 
-import bean.ProgramStudiBean;
+import bean.AgamaBean;
 import org.jboss.logging.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -10,24 +10,25 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/programstudi")
+@Path("/agama")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class ProgramStudiService {
+public class AgamaService {
     @Inject
-    ProgramStudiBean programStudiBean;
+    AgamaBean agamaBean;
 
     @GET
-    @RolesAllowed({"administrator", "mahasiswa"})
-    public Response getProgramStudi() {
+    @RolesAllowed({"mahasiswa","administrator"})
+    public Response getAgamas() {
         try {
-            return Response.ok(programStudiBean.getProgramStudi())
-                    .build();
-        } catch (NoResultException ex) {
+            return Response.ok(agamaBean.getAgama()).build();
+        }
+        catch(NoResultException ex){
             return Response.status(Response.Status.NOT_FOUND).build();
-        } catch (ForbiddenException ex) {
+        }
+        catch(ForbiddenException ex){
             return Response.status(Response.Status.FORBIDDEN).build();
-        } catch (Exception ex) {
+        }
+        catch(Exception ex){
             Logger.getLogger(this.getClass()).error(ex);
             return Response.serverError().build();
         }

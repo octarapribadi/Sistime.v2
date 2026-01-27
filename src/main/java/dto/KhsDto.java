@@ -3,7 +3,7 @@ package dto;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KhsDTO {
+public class KhsDto {
     long idKrs;
     String namaMatakuliah;
     String kodeMatakuliah;

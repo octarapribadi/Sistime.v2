@@ -4,7 +4,7 @@ import repo.KrsMahasiswaManager;
 import repo.UserManager;
 import entity.KrsMahasiswa;
 import entity.User;
-import dto.KrsMahasiswaDTO;
+import dto.KrsMahasiswaDto;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,13 +21,13 @@ public class KrsMahasiswaBean implements Serializable {
     @Inject
     UserManager userManager;
 
-    public List<KrsMahasiswaDTO> getKrs(long idUser){
+    public List<KrsMahasiswaDto> getKrs(long idUser){
         User user = userManager.findUserByUserId(idUser);
         if (user != null) {
             List<KrsMahasiswa> krsMahasiswas = krsMahasiswaManager.findKrsMahasiswaByUserId(user.getId());
-            List<KrsMahasiswaDTO> krsMahasiswaDTOs = new ArrayList<>();
+            List<KrsMahasiswaDto> krsMahasiswaDtos = new ArrayList<>();
             krsMahasiswas.forEach(krs -> {
-                KrsMahasiswaDTO krsMahasiswaDTO = new KrsMahasiswaDTO();
+                KrsMahasiswaDto krsMahasiswaDTO = new KrsMahasiswaDto();
                 krsMahasiswaDTO.setIdKrs(krs.getId());
                 krsMahasiswaDTO.setIdSkemaKrs(krs.getSkedul().getIdSkemakrs().getId());
                 krsMahasiswaDTO.setNamaDosen(krs.getSkedul().getIdDosen().getNamaDosen());
@@ -35,9 +35,9 @@ public class KrsMahasiswaBean implements Serializable {
                 krsMahasiswaDTO.setSemester(krs.getSkedul().getIdMatakuliah().getSemester());
                 krsMahasiswaDTO.setKodeMatakuliah(krs.getSkedul().getIdMatakuliah().getKodeMatakuliah());
                 krsMahasiswaDTO.setNamaMatakuliah(krs.getSkedul().getIdMatakuliah().getNamaMatakuliah());
-                krsMahasiswaDTOs.add(krsMahasiswaDTO);
+                krsMahasiswaDtos.add(krsMahasiswaDTO);
             });
-            return krsMahasiswaDTOs;
+            return krsMahasiswaDtos;
         }
         else
             return Collections.emptyList();

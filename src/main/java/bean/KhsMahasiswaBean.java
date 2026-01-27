@@ -4,7 +4,7 @@ import repo.KrsMahasiswaManager;
 import repo.Nilai2Manager;
 import entity.KrsMahasiswa;
 import entity.Nilai2;
-import dto.KhsDTO;
+import dto.KhsDto;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -19,12 +19,12 @@ public class KhsMahasiswaBean {
     @Inject
     KrsMahasiswaManager krsMahasiswaManager;
 
-    public List<KhsDTO> getKhs(long userId) {
+    public List<KhsDto> getKhs(long userId) {
         List<KrsMahasiswa> krsMahasiswas = krsMahasiswaManager.findKrsMahasiswaByUserId(userId);
         List<Nilai2> nilai2s = nilai2Manager.findAllNilaiByKrsMahasiswas(krsMahasiswas);
-        List<KhsDTO> khs = new ArrayList<>();
+        List<KhsDto> khs = new ArrayList<>();
         krsMahasiswas.forEach(krs -> {
-            KhsDTO khsDTO = new KhsDTO();
+            KhsDto khsDTO = new KhsDto();
             khsDTO.setIdKrs(krs.getId());
             khsDTO.setNamaMatakuliah(krs.getSkedul().getIdMatakuliah().getNamaMatakuliah());
             khsDTO.setSemester(krs.getSkedul().getIdMatakuliah().getSemester());

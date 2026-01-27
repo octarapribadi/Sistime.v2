@@ -1,6 +1,6 @@
 package bean;
 
-import dto.TranskripDTO;
+import dto.TranskripDto;
 import entity.KrsMahasiswa;
 import entity.Mahasiswa;
 import entity.Nilai2;
@@ -23,10 +23,10 @@ public class TranskripBean {
     @Inject
     Nilai2Manager nilai2Manager;
 
-    public List<TranskripDTO> getTranskripByIdUser(long idUser){
+    public List<TranskripDto> getTranskripByIdUser(long idUser){
         Mahasiswa selectedMahasiswa = mahasiswaManager.findMahasiswaByIdUser(idUser);
         if (selectedMahasiswa != null) {
-            List<TranskripDTO> transkrips = new ArrayList<>();
+            List<TranskripDto> transkrips = new ArrayList<>();
             List<KrsMahasiswa> krsMahasiswas = krsMahasiswaManager.findKrsMahasiswaByUserId(selectedMahasiswa.getUser().getId());
             List<Nilai2> nilai2s = nilai2Manager.findAllNilaiByKrsMahasiswas(krsMahasiswas);
 
@@ -36,7 +36,7 @@ public class TranskripBean {
             }
 
             for (KrsMahasiswa krs : krsMahasiswas) {
-                TranskripDTO dto = new TranskripDTO();
+                TranskripDto dto = new TranskripDto();
                 dto.setKrsId(krs.getId());
                 dto.setKodeMatkul(krs.getSkedul().getIdMatakuliah().getKodeMatakuliah());
                 dto.setMatkul(krs.getSkedul().getIdMatakuliah().getNamaMatakuliah());

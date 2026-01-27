@@ -1,5 +1,7 @@
 package dto;
 
+import entity.Agama;
+import entity.Kampus;
 import entity.Mahasiswa;
 
 import java.util.Date;
@@ -40,13 +42,26 @@ public class MahasiswaDto {
     private Date tanggalIjazah;
     private String pendidikanOrangtua;
 
+    public static Mahasiswa toEntity(Mahasiswa mhs, MahasiswaDto dto) {
+        if (dto.idAgama != null) {
+            mhs.setAgama(new Agama());
+            mhs.getAgama().setIdAgama(dto.getIdAgama());
+        }
+        if(dto.kodeKampus!=null){
+            mhs.setKampus(new Kampus());
+            mhs.getKampus().setKodeKampus(dto.getKodeKampus());
+        }
+        mhs.setAlamatMahasiswa(dto.getAlamatMahasiswa());
+        return mhs;
+    }
+
     public static MahasiswaDto fromEntity(Mahasiswa mahasiswa) {
         MahasiswaDto mhs = new MahasiswaDto();
         mhs.idPendaftaran = mahasiswa.getIdPendaftaran();
         mhs.idUser = mahasiswa.getUser().getId();
         mhs.idAgama = mahasiswa.getAgama() == null ? null : mahasiswa.getAgama().getIdAgama();
-        mhs.kodeKampus = mahasiswa.getKampus()==null?null:mahasiswa.getKampus().getKodeKampus();
-        mhs.kodeProgramStudi = mahasiswa.getProgramStudi()==null?null:mahasiswa.getProgramStudi().getKodeProgramstudi();
+        mhs.kodeKampus = mahasiswa.getKampus() == null ? null : mahasiswa.getKampus().getKodeKampus();
+        mhs.kodeProgramStudi = mahasiswa.getProgramStudi() == null ? null : mahasiswa.getProgramStudi().getKodeProgramstudi();
         mhs.idSekolah = mahasiswa.getSekolah() == null ? null : mahasiswa.getSekolah().getIdSekolah();
         mhs.idStatus = mahasiswa.getStatus() == null ? null : mahasiswa.getStatus().getIdStatus();
         mhs.idWaktuKuliah = mahasiswa.getWaktuKuliah() == null ? null : mahasiswa.getWaktuKuliah().getIdWaktukuliah();

@@ -3,7 +3,7 @@ package dto;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TranskripDTO {
+public class TranskripDto {
     long krsId;
     String kodeMatkul, matkul;
     int sks;

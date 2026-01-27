@@ -2,7 +2,7 @@ package service;
 
 import bean.AuthBean;
 import bean.TokenFactoryBean;
-import dto.Login;
+import dto.LoginDto;
 import entity.UserRole;
 import org.jboss.logging.Logger;
 import repo.UserRoleManager;
@@ -34,10 +34,10 @@ public class LoginService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(Login login) {
+    public Response login(LoginDto loginDto) {
         try {
-            String username = login.getUsername();
-            String password = login.getPassword();
+            String username = loginDto.getUsername();
+            String password = loginDto.getPassword();
             if (username == null || password == null)
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("Username atau password tidak boleh kosong")

@@ -1,6 +1,6 @@
 package dto;
 
-public class MataKuliahDTO {
+public class MataKuliahDto {
     Long id;
     String tipeMataKuliah;
     String kodeMatakuliah, namaMatakuliah, keterangan;

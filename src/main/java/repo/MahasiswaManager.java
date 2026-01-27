@@ -224,4 +224,13 @@ public class MahasiswaManager {
             return null;
         }
     }
+
+    public Long findIdPendaftaranByIdUser(Long idUser){
+        TypedQuery<Long>query = em.createQuery("select m.idPendaftaran from Mahasiswa m " +
+                "join m.user u " +
+                "where m.user.id=:iduser",Long.class)
+                .setParameter("iduser",idUser);
+        return query.getResultList().get(0);
+    }
+
 }

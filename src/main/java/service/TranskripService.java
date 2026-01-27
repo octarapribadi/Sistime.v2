@@ -1,7 +1,7 @@
 package service;
 
 import bean.TranskripBean;
-import dto.TranskripDTO;
+import dto.TranskripDto;
 import entity.Mahasiswa;
 import org.jboss.logging.Logger;
 import repo.MahasiswaManager;
@@ -32,7 +32,7 @@ public class TranskripService {
         try {
             Mahasiswa selectedMahasiswa = mahasiswaManager.findMahasiswaByIdUser(idUser);
             if (selectedMahasiswa != null) {
-                List<TranskripDTO> transkrips = transkripBean.getTranskripByIdUser(idUser);
+                List<TranskripDto> transkrips = transkripBean.getTranskripByIdUser(idUser);
                 return Response.ok(transkrips, MediaType.APPLICATION_JSON).build();
             } else
                 return Response.status(Response.Status.NOT_FOUND).entity("[]").build();

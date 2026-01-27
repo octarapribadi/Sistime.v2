@@ -1,6 +1,6 @@
 package dto;
 
-public class KrsMahasiswaDTO {
+public class KrsMahasiswaDto {
     Long idKrs, idSkemaKrs;
     int semester;
     String kodeMatakuliah, namaMatakuliah, namaDosen;

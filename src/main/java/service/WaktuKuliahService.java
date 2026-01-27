@@ -1,6 +1,6 @@
 package service;
 
-import bean.ProgramStudiBean;
+import bean.WaktuKuliahBean;
 import org.jboss.logging.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -10,18 +10,18 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/programstudi")
+@Path("/waktukuliah")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ProgramStudiService {
+public class WaktuKuliahService {
     @Inject
-    ProgramStudiBean programStudiBean;
+    WaktuKuliahBean waktuKuliahBean;
 
     @GET
     @RolesAllowed({"administrator", "mahasiswa"})
-    public Response getProgramStudi() {
+    public Response getWaktuKuliah(){
         try {
-            return Response.ok(programStudiBean.getProgramStudi())
+            return Response.ok(waktuKuliahBean.getWaktuKuliah())
                     .build();
         } catch (NoResultException ex) {
             return Response.status(Response.Status.NOT_FOUND).build();

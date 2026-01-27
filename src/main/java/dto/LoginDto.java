@@ -1,6 +1,6 @@
 package dto;
 
-public class Login {
+public class LoginDto {
     String username, password;
 
     public String getUsername() {
