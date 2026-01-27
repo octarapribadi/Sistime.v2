@@ -1,7 +1,5 @@
 package entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,7 +52,6 @@ public class Status implements java.io.Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "status")
-    @JsonBackReference
     public Set<RegistrasiMahasiswa> getRegistrasiMahasiswas() {
         return this.registrasiMahasiswas;
     }
@@ -64,7 +61,6 @@ public class Status implements java.io.Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "status")
-    @JsonBackReference
     public Set<Mahasiswa> getMahasiswas() {
         return this.mahasiswas;
     }

@@ -39,13 +39,6 @@ public class MahasiswaManager {
             TypedQuery<Mahasiswa> query = em.createQuery("select m from Mahasiswa m " +
                             "join fetch m.user u " +
                             "left join fetch u.statusMahasiswa sm " +
-                            "left join fetch sm.kelas k " +
-                            "left join fetch m.sekolah " +
-                            "left join fetch m.agama " +
-                            "left join fetch m.kampus " +
-                            "left join fetch m.programStudi " +
-                            "left join fetch m.waktuKuliah " +
-                            "left join fetch m.status " +
                             "where sm.nim=:nim", Mahasiswa.class)
                     .setParameter("nim", nim);
             return query.getSingleResult();

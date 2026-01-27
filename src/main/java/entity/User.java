@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "tbl_users")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,18 +17,15 @@ public class User implements Serializable {
     private String username;
 
     @Column(name = "password", length = 45)
-    @JsonIgnore
     private String password;
 
     @Column(name = "keterangan")
     private String keterangan;
 
     @OneToOne(mappedBy = "user")
-    @JsonBackReference
     private Mahasiswa mahasiswa;
 
     @OneToOne(mappedBy = "user")
-    @JsonBackReference
     private StatusMahasiswa statusMahasiswa;
 
     public Mahasiswa getMahasiswa() {

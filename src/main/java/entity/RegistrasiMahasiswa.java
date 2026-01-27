@@ -1,20 +1,9 @@
 package entity;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tbl_registrasimahasiswa")
@@ -129,7 +118,6 @@ public class RegistrasiMahasiswa implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kode_programstudi")
-    @JsonManagedReference
     public ProgramStudi getProgramStudi() {
         return this.programStudi;
     }
@@ -140,7 +128,6 @@ public class RegistrasiMahasiswa implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_sekolah")
-    @JsonManagedReference
     public Sekolah getSekolah() {
         return this.sekolah;
     }
@@ -151,7 +138,6 @@ public class RegistrasiMahasiswa implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status")
-    @JsonManagedReference
     public Status getStatus() {
         return this.status;
     }
@@ -162,7 +148,6 @@ public class RegistrasiMahasiswa implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kode_waktukuliah")
-    @JsonManagedReference
     public WaktuKuliah getWaktuKuliah() {
         return this.waktuKuliah;
     }

@@ -1,19 +1,13 @@
 package entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "tbl_programstudi")
-@JsonIdentityInfo(property = "kodeProgramstudi", generator = ObjectIdGenerators.PropertyGenerator.class)
 public class ProgramStudi implements java.io.Serializable {
-
 
     private String kodeProgramstudi;
     private String keterangan;
@@ -39,7 +33,7 @@ public class ProgramStudi implements java.io.Serializable {
 
     @Id
     @Column(name = "kode_programstudi", unique = true, nullable = false, length = 45)
-        public String getKodeProgramstudi() {
+    public String getKodeProgramstudi() {
         return this.kodeProgramstudi;
     }
 
@@ -68,7 +62,6 @@ public class ProgramStudi implements java.io.Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "programStudi")
-    @JsonBackReference
     public Set<Mahasiswa> getMahasiswas() {
         return this.mahasiswas;
     }
@@ -78,7 +71,6 @@ public class ProgramStudi implements java.io.Serializable {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "programStudi")
-    @JsonBackReference
     public Set<RegistrasiMahasiswa> getRegistrasiMahasiswas() {
         return this.registrasiMahasiswas;
     }

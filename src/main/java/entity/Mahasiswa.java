@@ -11,22 +11,21 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "tbl_mahasiswa")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPendaftaran")
 public class Mahasiswa implements java.io.Serializable {
     private Long idPendaftaran;
-    @JsonManagedReference
+
     private User user;
-    @JsonManagedReference
+
     private Agama agama;
-    @JsonManagedReference
+
     private Kampus kampus;
-    @JsonManagedReference
+
     private ProgramStudi programStudi;
-    @JsonManagedReference
+
     private Sekolah sekolah;
-    @JsonManagedReference
+
     private Status status;
-    @JsonManagedReference
+
     private WaktuKuliah waktuKuliah;
     private String email;
     private Date tanggalPendaftaran;
@@ -53,7 +52,7 @@ public class Mahasiswa implements java.io.Serializable {
     private Integer tahunLulus;
     private Date tanggalIjazah;
     private String pendidikanOrangtua;
-    @JsonIgnore
+
     private Set<MahasiswaFile> mahasiswaFiles = new HashSet<MahasiswaFile>(0);
 
     public Mahasiswa() {

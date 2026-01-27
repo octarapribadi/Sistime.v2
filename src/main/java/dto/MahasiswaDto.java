@@ -1,11 +1,10 @@
 package dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import entity.Mahasiswa;
 
 import java.util.Date;
 
-public class MahasiswaDtoo {
+public class MahasiswaDto {
     private long idPendaftaran;
     private long idUser;
     private String idAgama;
@@ -41,16 +40,16 @@ public class MahasiswaDtoo {
     private Date tanggalIjazah;
     private String pendidikanOrangtua;
 
-    public static MahasiswaDtoo fromEntity(Mahasiswa mahasiswa) {
-        MahasiswaDtoo mhs = new MahasiswaDtoo();
+    public static MahasiswaDto fromEntity(Mahasiswa mahasiswa) {
+        MahasiswaDto mhs = new MahasiswaDto();
         mhs.idPendaftaran = mahasiswa.getIdPendaftaran();
         mhs.idUser = mahasiswa.getUser().getId();
-        mhs.idAgama = mahasiswa.getAgama().getIdAgama();
-        mhs.kodeKampus = mahasiswa.getKampus().getKodeKampus();
-        mhs.kodeProgramStudi = mahasiswa.getProgramStudi().getKodeProgramstudi();
-        mhs.idSekolah = mahasiswa.getSekolah().getIdSekolah();
-        mhs.idStatus = mahasiswa.getStatus().getIdStatus();
-        mhs.idWaktuKuliah = mahasiswa.getWaktuKuliah().getIdWaktukuliah();
+        mhs.idAgama = mahasiswa.getAgama() == null ? null : mahasiswa.getAgama().getIdAgama();
+        mhs.kodeKampus = mahasiswa.getKampus()==null?null:mahasiswa.getKampus().getKodeKampus();
+        mhs.kodeProgramStudi = mahasiswa.getProgramStudi()==null?null:mahasiswa.getProgramStudi().getKodeProgramstudi();
+        mhs.idSekolah = mahasiswa.getSekolah() == null ? null : mahasiswa.getSekolah().getIdSekolah();
+        mhs.idStatus = mahasiswa.getStatus() == null ? null : mahasiswa.getStatus().getIdStatus();
+        mhs.idWaktuKuliah = mahasiswa.getWaktuKuliah() == null ? null : mahasiswa.getWaktuKuliah().getIdWaktukuliah();
         mhs.email = mahasiswa.getEmail();
         mhs.tanggalPendaftaran = mahasiswa.getTanggalPendaftaran();
         mhs.namaMahasiswa = mahasiswa.getNamaMahasiswa();

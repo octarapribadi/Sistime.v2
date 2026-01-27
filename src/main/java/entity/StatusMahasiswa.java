@@ -1,7 +1,5 @@
 package entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,7 +20,6 @@ public class StatusMahasiswa implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
-    @JsonManagedReference
     private User user;
 
     @Column(name = "nim", length = 45)
@@ -30,7 +27,6 @@ public class StatusMahasiswa implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kode_kelas")
-    @JsonManagedReference
     private Kelas kelas;
 
     @Column(name = "status", length = 45)
