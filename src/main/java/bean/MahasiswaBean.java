@@ -7,8 +7,8 @@ import repo.MahasiswaManager;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.ForbiddenException;
 import java.io.Serializable;
+import java.util.Set;
 
 @RequestScoped
 public class MahasiswaBean implements Serializable {
@@ -20,15 +20,15 @@ public class MahasiswaBean implements Serializable {
 
     public MahasiswaDto getMahasiswaByNim(String nim) {
         Mahasiswa mhs = mahasiswaManager.findMahasiswaByNim(nim);
-        if (token.getClaim("sub").equals(mhs.getUser().getId().toString())
-                || token.getClaim("roles").equals("administrator")) {
-            MahasiswaDto dto = MahasiswaDto.fromEntity(mhs);
-            return dto;
-        } else
-            return null;
+        if (mhs != null)
+            return MahasiswaDto.fromEntity(mhs);
+        else return null;
     }
 
-    public Mahasiswa getMahasiswaByIdUser(long idUser) {
-        return mahasiswaManager.findMahasiswaByIdUser(idUser);
+    public MahasiswaDto getMahasiswaByIdUser(long idUser) {
+        Mahasiswa mhs = mahasiswaManager.findMahasiswaByIdUser(idUser);
+        if (mhs != null)
+            return MahasiswaDto.fromEntity(mhs);
+        else return null;
     }
 }

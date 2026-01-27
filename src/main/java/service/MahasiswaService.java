@@ -12,6 +12,7 @@ import javax.persistence.NoResultException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Set;
 
 @Path("/mahasiswa")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,9 +31,15 @@ public class MahasiswaService {
     public Response getMahasiswaByNim(@PathParam("nim") String nim) {
         try {
             MahasiswaDto dto = mahasiswaBean.getMahasiswaByNim(nim);
-            if(dto==null)
-                Response.noContent().build();
+            String userId = String.valueOf(dto.getIdUser());
+            Set<String> groups = token.getClaim("groups");
+            if (groups.contains("administrator"))
+                return Response.ok(dto).build();
+            if (!token.getClaim("sub").equals(userId))
+                return Response.status(Response.Status.FORBIDDEN).build();
             return Response.ok(dto).build();
+        } catch (NoResultException ex) {
+            return Response.status(Response.Status.NOT_FOUND).build();
         } catch (Exception ex) {
             Logger.getLogger(MahasiswaService.class).error(ex);
             return Response.serverError().build();
@@ -44,16 +51,16 @@ public class MahasiswaService {
     @RolesAllowed({"mahasiswa", "administrator"})
     public Response getMahasiswaByUserId(@PathParam("iduser") long idUser) {
         try {
-            if (!token.getClaim("sub").equals(String.valueOf(idUser))
-                    && !token.getClaim("roles").equals("administrator"))
+
+            MahasiswaDto dto = mahasiswaBean.getMahasiswaByIdUser(idUser);
+            Set<String> groups = token.getClaim("groups");
+            if (groups.contains("administrator"))
+                return Response.ok(dto).build();
+            if (!token.getClaim("sub").equals(String.valueOf(idUser)))
                 return Response.status(Response.Status.FORBIDDEN).build();
-            Mahasiswa mhs = mahasiswaBean.getMahasiswaByIdUser(idUser);
-            MahasiswaDto dto = MahasiswaDto.fromEntity(mhs);
             return Response.ok(dto).build();
         } catch (NoResultException ex) {
-            return Response
-                    .status(Response.Status.NOT_FOUND)
-                    .build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         } catch (Exception ex) {
             Logger.getLogger(MahasiswaService.class).error(ex);
             return Response.serverError().build();
