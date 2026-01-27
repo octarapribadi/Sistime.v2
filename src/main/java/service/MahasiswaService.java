@@ -26,18 +26,13 @@ public class MahasiswaService {
 
     @GET
     @Path("/nim/{nim}")
-    @RolesAllowed({"mahasiswa"})
+    @RolesAllowed({"mahasiswa", "administrator"})
     public Response getMahasiswaByNim(@PathParam("nim") String nim) {
         try {
-            Mahasiswa mhs = mahasiswaBean.getMahasiswaByNim(nim);
-            if (!token.getClaim("sub").equals(mhs.getUser().getId().toString()))
-                return Response.status(Response.Status.FORBIDDEN).build();
-            MahasiswaDto dto = MahasiswaDto.fromEntity(mhs);
+            MahasiswaDto dto = mahasiswaBean.getMahasiswaByNim(nim);
+            if(dto==null)
+                Response.noContent().build();
             return Response.ok(dto).build();
-        } catch (NoResultException ex) {
-            return Response
-                    .status(Response.Status.NOT_FOUND)
-                    .build();
         } catch (Exception ex) {
             Logger.getLogger(MahasiswaService.class).error(ex);
             return Response.serverError().build();
@@ -49,7 +44,8 @@ public class MahasiswaService {
     @RolesAllowed({"mahasiswa", "administrator"})
     public Response getMahasiswaByUserId(@PathParam("iduser") long idUser) {
         try {
-            if (!token.getClaim("sub").equals(String.valueOf(idUser)))
+            if (!token.getClaim("sub").equals(String.valueOf(idUser))
+                    && !token.getClaim("roles").equals("administrator"))
                 return Response.status(Response.Status.FORBIDDEN).build();
             Mahasiswa mhs = mahasiswaBean.getMahasiswaByIdUser(idUser);
             MahasiswaDto dto = MahasiswaDto.fromEntity(mhs);
