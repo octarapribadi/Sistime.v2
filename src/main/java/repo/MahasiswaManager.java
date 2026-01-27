@@ -26,7 +26,15 @@ public class MahasiswaManager {
         }
     }
 
-    public Mahasiswa findMahasiswaByNim(String nim){
+    public Mahasiswa findMahasiswaByIdUser(long idUser) {
+        return em.createQuery("select m from Mahasiswa m " +
+                        "left join fetch m.sekolah " +
+                        "where m.user.id=:iduser", Mahasiswa.class)
+                .setParameter("iduser", idUser)
+                .getSingleResult();
+    }
+
+    public Mahasiswa findMahasiswaByNim(String nim) {
         try {
             TypedQuery<Mahasiswa> query = em.createQuery("select m from Mahasiswa m " +
                             "join fetch m.user u " +
@@ -85,7 +93,7 @@ public class MahasiswaManager {
         }
     }
 
-    public Mahasiswa findMahasiswaWithStatusMahasiswaByUserId(Long userId){
+    public Mahasiswa findMahasiswaWithStatusMahasiswaByUserId(Long userId) {
         try {
             TypedQuery<Mahasiswa> qry = em.createQuery("select m from Mahasiswa m " +
                             "join fetch m.user u " +
@@ -210,16 +218,15 @@ public class MahasiswaManager {
         return !qry.getResultList().isEmpty();
     }
 
-    public List<Mahasiswa>findMahasiswasByKodeKelas(String kodeKelas){
-        try{
+    public List<Mahasiswa> findMahasiswasByKodeKelas(String kodeKelas) {
+        try {
             TypedQuery<Mahasiswa> query = em.createQuery("select m from Mahasiswa m " +
-                    "join fetch m.user u " +
-                    "join fetch u.statusMahasiswa sm " +
-                    "where sm.kelas.kodeKelas=:kodekelas",Mahasiswa.class)
-                    .setParameter("kodekelas",kodeKelas);
+                            "join fetch m.user u " +
+                            "join fetch u.statusMahasiswa sm " +
+                            "where sm.kelas.kodeKelas=:kodekelas", Mahasiswa.class)
+                    .setParameter("kodekelas", kodeKelas);
             return query.getResultList();
-        }
-        catch(PersistenceException ex){
+        } catch (PersistenceException ex) {
             Logger.getLogger(MahasiswaManager.class).error("error:" + ex.getMessage());
             return null;
         }

@@ -12,7 +12,11 @@ public class MahasiswaBean implements Serializable {
     @Inject
     MahasiswaManager mahasiswaManager;
 
-    public Mahasiswa getMahasiswaByNim(String nim){
+    public Mahasiswa getMahasiswaByNim(String nim) {
         return mahasiswaManager.findMahasiswaByNim(nim);
+    }
+
+    public Mahasiswa getMahasiswaByIdUser(long idUser) {
+        return mahasiswaManager.findMahasiswaByIdUser(idUser);
     }
 }
