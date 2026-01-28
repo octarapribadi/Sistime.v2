@@ -47,12 +47,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/org.eclipse.microprofile.jwt/microprofile-jwt-auth-api -->
-<!--        <dependency>-->
-<!--            <groupId>org.eclipse.microprofile.jwt</groupId>-->
-<!--            <artifactId>microprofile-jwt-auth-api</artifactId>-->
-<!--            <version>1.1.1</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.eclipse.microprofile.jwt</groupId>-->
+        <!--            <artifactId>microprofile-jwt-auth-api</artifactId>-->
+        <!--            <version>1.1.1</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>io.smallrye</groupId>
@@ -66,6 +66,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+
     </dependencies>
     <profiles>
         <profile>

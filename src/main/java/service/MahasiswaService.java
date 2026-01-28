@@ -2,7 +2,6 @@ package service;
 
 import bean.MahasiswaBean;
 import dto.MahasiswaDto;
-import entity.Mahasiswa;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
@@ -12,6 +11,7 @@ import javax.persistence.NoResultException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 import java.util.Set;
 
 @Path("/mahasiswa")
@@ -80,8 +80,8 @@ public class MahasiswaService {
                 return Response.status(Response.Status.FORBIDDEN).build();
             mahasiswaBean.patchMahasiswaByIdUser(idUser, dto);
             return Response.ok().build();
-        } catch (Exception ex) {
-            Logger.getLogger(this.getClass()).error(ex);
+        }
+        catch (Exception ex) {
             return Response.serverError().build();
         }
     }
