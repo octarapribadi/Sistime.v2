@@ -26,4 +26,7 @@ public class AgamaBean implements Serializable {
         });
         return dtos;
     }
+    public  boolean isAgamaExist(String idAgama){
+        return agamaManager.findAgamaById(idAgama)!=null;
+    }
 }

@@ -1,7 +1,5 @@
 package dto;
 
-import entity.Agama;
-import entity.Kampus;
 import entity.Mahasiswa;
 
 import java.util.Date;
@@ -41,19 +39,6 @@ public class MahasiswaDto {
     private Integer tahunLulus;
     private Date tanggalIjazah;
     private String pendidikanOrangtua;
-
-    public static Mahasiswa toEntity(Mahasiswa mhs, MahasiswaDto dto) {
-        if (dto.idAgama != null) {
-            mhs.setAgama(new Agama());
-            mhs.getAgama().setIdAgama(dto.getIdAgama());
-        }
-        if(dto.kodeKampus!=null){
-            mhs.setKampus(new Kampus());
-            mhs.getKampus().setKodeKampus(dto.getKodeKampus());
-        }
-        mhs.setAlamatMahasiswa(dto.getAlamatMahasiswa());
-        return mhs;
-    }
 
     public static MahasiswaDto fromEntity(Mahasiswa mahasiswa) {
         MahasiswaDto mhs = new MahasiswaDto();
