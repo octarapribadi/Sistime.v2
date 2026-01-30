@@ -7,7 +7,6 @@ import repo.MahasiswaManager;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.WebApplicationException;
 import java.io.Serializable;
 
 @RequestScoped
@@ -21,7 +20,7 @@ public class MahasiswaBean implements Serializable {
     public MahasiswaDto getMahasiswaByNim(String nim) {
         Mahasiswa mhs = mahasiswaManager.findMahasiswaByNim(nim);
         if (mhs != null)
-            return MahasiswaDto.fromEntity(mhs);
+            return entityToDto(mhs);
         else
             return null;
     }
@@ -29,13 +28,62 @@ public class MahasiswaBean implements Serializable {
     public MahasiswaDto getMahasiswaByIdUser(long idUser) {
         Mahasiswa mhs = mahasiswaManager.findMahasiswaByIdUser(idUser);
         if (mhs != null) {
-            return MahasiswaDto.fromEntity(mhs);
+            return entityToDto(mhs);
         } else return null;
     }
 
     @Transactional
     public void patchMahasiswaByIdUser(long idUser, MahasiswaDto dto) {
         Mahasiswa mhs = mahasiswaManager.findMahasiswaByIdUser(idUser);
+        dtoToEntity(mhs, dto);
+        mahasiswaManager.merge(mhs);
+    }
+
+    private MahasiswaDto entityToDto(Mahasiswa mhs) {
+        MahasiswaDto dto = new MahasiswaDto();
+        if (mhs.getAgama() != null)
+            dto.setIdAgama(mhs.getAgama().getIdAgama());
+        if (mhs.getKampus() != null)
+            dto.setKodeKampus(mhs.getKampus().getKodeKampus());
+        if (mhs.getProgramStudi() != null)
+            dto.setKodeProgramStudi(mhs.getProgramStudi().getKodeProgramstudi());
+        if (mhs.getSekolah() != null)
+            dto.setIdSekolah(mhs.getSekolah().getIdSekolah());
+        if (mhs.getStatus() != null)
+            dto.setIdStatus(mhs.getStatus().getIdStatus());
+        if (mhs.getWaktuKuliah() != null)
+            dto.setIdWaktuKuliah(mhs.getWaktuKuliah().getIdWaktukuliah());
+        dto.setIdPendaftaran(mhs.getIdPendaftaran());
+        dto.setIdUser(mhs.getUser().getId());
+        dto.setEmail(mhs.getEmail());
+        dto.setTanggalPendaftaran(mhs.getTanggalPendaftaran());
+        dto.setNamaMahasiswa(mhs.getNamaMahasiswa());
+        dto.setTempatLahir(mhs.getTempatLahir());
+        dto.setTanggalLahir(mhs.getTanggalLahir());
+        dto.setAlamatMahasiswa(mhs.getAlamatMahasiswa());
+        dto.setJenisKelamin(mhs.getJenisKelamin());
+        dto.setAlamatOrangtua(mhs.getAlamatOrangtua());
+        dto.setAnakKe(mhs.getAnakKe());
+        dto.setGolonganDarah(mhs.getGolonganDarah());
+        dto.setHobi(mhs.getHobi());
+        dto.setJumlahSaudara(mhs.getJumlahSaudara());
+        dto.setJurusan(mhs.getJurusan());
+        dto.setKeterangan(mhs.getKeterangan());
+        dto.setKewarganegaraan(mhs.getKewarganegaraan());
+        dto.setNamaAyah(mhs.getNamaAyah());
+        dto.setNamaIbu(mhs.getNamaIbu());
+        dto.setNoIjazah(mhs.getNoIjazah());
+        dto.setNoTeleponMahasiswa(mhs.getNoTeleponMahasiswa());
+        dto.setNoTeleponOrangtua(mhs.getNoTeleponOrangtua());
+        dto.setPekerjaanOrangtua(mhs.getPekerjaanOrangtua());
+        dto.setTahunAngkatan(mhs.getTahunAngkatan());
+        dto.setTahunLulus(mhs.getTahunLulus());
+        dto.setTanggalIjazah(mhs.getTanggalIjazah());
+        dto.setPendidikanOrangtua(mhs.getPendidikanOrangtua());
+        return dto;
+    }
+
+    private Mahasiswa dtoToEntity(Mahasiswa mhs, MahasiswaDto dto) {
 
         if (dto.getIdAgama() != null) {
             mhs.setAgama(new Agama());
@@ -133,6 +181,7 @@ public class MahasiswaBean implements Serializable {
         if (dto.getPendidikanOrangtua() != null)
             mhs.setPendidikanOrangtua(dto.getPendidikanOrangtua());
 
-        mahasiswaManager.merge(mhs);
+        return mhs;
     }
+
 }

@@ -1,7 +1,5 @@
 package dto;
 
-import entity.Mahasiswa;
-
 import java.util.Date;
 
 public class MahasiswaDto {
@@ -39,44 +37,6 @@ public class MahasiswaDto {
     private Integer tahunLulus;
     private Date tanggalIjazah;
     private String pendidikanOrangtua;
-
-    public static MahasiswaDto fromEntity(Mahasiswa mahasiswa) {
-        MahasiswaDto mhs = new MahasiswaDto();
-        mhs.idPendaftaran = mahasiswa.getIdPendaftaran();
-        mhs.idUser = mahasiswa.getUser().getId();
-        mhs.idAgama = mahasiswa.getAgama() == null ? null : mahasiswa.getAgama().getIdAgama();
-        mhs.kodeKampus = mahasiswa.getKampus() == null ? null : mahasiswa.getKampus().getKodeKampus();
-        mhs.kodeProgramStudi = mahasiswa.getProgramStudi() == null ? null : mahasiswa.getProgramStudi().getKodeProgramstudi();
-        mhs.idSekolah = mahasiswa.getSekolah() == null ? null : mahasiswa.getSekolah().getIdSekolah();
-        mhs.idStatus = mahasiswa.getStatus() == null ? null : mahasiswa.getStatus().getIdStatus();
-        mhs.idWaktuKuliah = mahasiswa.getWaktuKuliah() == null ? null : mahasiswa.getWaktuKuliah().getIdWaktukuliah();
-        mhs.email = mahasiswa.getEmail();
-        mhs.tanggalPendaftaran = mahasiswa.getTanggalPendaftaran();
-        mhs.namaMahasiswa = mahasiswa.getNamaMahasiswa();
-        mhs.tempatLahir = mahasiswa.getTempatLahir();
-        mhs.tanggalLahir = mahasiswa.getTanggalLahir();
-        mhs.alamatMahasiswa = mahasiswa.getAlamatMahasiswa();
-        mhs.jenisKelamin = mahasiswa.getJenisKelamin();
-        mhs.alamatOrangtua = mahasiswa.getAlamatOrangtua();
-        mhs.anakKe = mahasiswa.getAnakKe();
-        mhs.golonganDarah = mahasiswa.getGolonganDarah();
-        mhs.hobi = mahasiswa.getHobi();
-        mhs.jumlahSaudara = mahasiswa.getJumlahSaudara();
-        mhs.jurusan = mahasiswa.getJurusan();
-        mhs.keterangan = mahasiswa.getKeterangan();
-        mhs.kewarganegaraan = mahasiswa.getKewarganegaraan();
-        mhs.namaAyah = mahasiswa.getNamaAyah();
-        mhs.namaIbu = mahasiswa.getNamaIbu();
-        mhs.noIjazah = mahasiswa.getNoIjazah();
-        mhs.noTeleponMahasiswa = mahasiswa.getNoTeleponMahasiswa();
-        mhs.noTeleponOrangtua = mahasiswa.getNoTeleponOrangtua();
-        mhs.pekerjaanOrangtua = mahasiswa.getPekerjaanOrangtua();
-        mhs.tahunAngkatan = mahasiswa.getTahunAngkatan();
-        mhs.tahunLulus = mahasiswa.getTahunLulus();
-        mhs.tanggalIjazah = mahasiswa.getTanggalIjazah();
-        mhs.pendidikanOrangtua = mahasiswa.getPendidikanOrangtua();
-        return mhs;
-    }
 
     public Integer getIdSekolah() {
         return idSekolah;
