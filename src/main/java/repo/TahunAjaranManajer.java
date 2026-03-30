@@ -28,4 +28,13 @@ public class TahunAjaranManajer {
             return null;
         }
     }
+    public void persist(TahunAjaran tahunAjaran){
+        em.persist(tahunAjaran);
+    }
+    public void merge(TahunAjaran tahunAjaran){
+        em.merge(tahunAjaran);
+    }
+    public void remove(TahunAjaran tahunAjaran){
+        em.remove(em.merge(tahunAjaran));
+    }
 }
