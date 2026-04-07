@@ -55,4 +55,8 @@ public class SkemaKrsManager {
         }
     }
 
+    public SkemaKrs findSkemaKrsByid(Long id){
+        return em.find(SkemaKrs.class,id);
+    }
+
 }

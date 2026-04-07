@@ -6,7 +6,6 @@ import dto.SkemaKrsDto;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,7 +21,6 @@ public class SkemaKrsService {
 
     @GET
     @RolesAllowed({"administrator", "mahasiswa"})
-    @Transactional
     public Response getSkemaKrs() {
         List<SkemaKrsDto> skemaKrsDtos = skemaKrsBean.findAll();
         if (skemaKrsDtos == null)
@@ -48,4 +46,21 @@ public class SkemaKrsService {
                     .build();
         }
     }
+
+    @DELETE
+    @RolesAllowed({"administrator"})
+    @Path("/{id}")
+    public Response removeSkemaKrs(@PathParam("id") Long id){
+        try {
+            skemaKrsBean.remove(id);
+            return Response.ok().build();
+        }
+        catch(WebApplicationException ex){
+            return Response
+                    .status(ex.getResponse().getStatus())
+                    .entity(new ErrorResponse(ex.getMessage(),ex.getResponse().getStatus()))
+                    .build();
+        }
+    }
+
 }

@@ -113,11 +113,31 @@ public class SkedulManager {
             TypedQuery<Skedul> query = em.createQuery("select s from Skedul s " +
                                     "join fetch s.idMatakuliah m " +
                                     "where s.kelas.kodeKelas=:kodekelas"
-                    , Skedul.class)
-                    .setParameter("kodekelas",kodeKelas);
+                            , Skedul.class)
+                    .setParameter("kodekelas", kodeKelas);
             return query.getResultList();
         } catch (PersistenceException ex) {
             Logger.getLogger(SkedulManager.class).error("error:" + ex.getMessage());
+            return null;
+        }
+    }
+
+    public List<Skedul> findSkedulByIdSkemaKrs(Long idSkemaKrs) {
+        if (idSkemaKrs == null)
+            return null;
+
+        TypedQuery<Skedul> query = em.createQuery("select s from Skedul s where s.idSkemakrs.id=:idSkemaKrs", Skedul.class)
+                .setParameter("idSkemaKrs", idSkemaKrs);
+        return query.getResultList();
+    }
+
+    public Skedul findSkedulById(Long idSkedul){
+        try {
+            TypedQuery<Skedul> query = em.createQuery("select s from Skedul s where s.id=:idSkedul", Skedul.class)
+                    .setParameter("idSkedul", idSkedul);
+            return query.getSingleResult();
+        }
+        catch(NoResultException ex){
             return null;
         }
     }

@@ -52,4 +52,13 @@ public class SkemaKrsBean implements Serializable {
         skemaKrsManager.persist(skemaKrs);
         dto.setId(skemaKrs.getId());
     }
+
+    @Transactional
+    public void remove(Long idSkemaKrs){
+        SkemaKrs skemaKrs = skemaKrsManager.findSkemaKrsByid(idSkemaKrs);
+        System.out.println(skemaKrs.getId());
+        if(skemaKrs==null)
+            throw new WebApplicationException("id SkemaKrs tidak ditemukan", Response.Status.NOT_FOUND);
+        skemaKrsManager.hapus(skemaKrs);
+    }
 }
