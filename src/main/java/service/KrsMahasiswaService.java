@@ -20,7 +20,6 @@ public class KrsMahasiswaService {
 
     @GET
     @Path("{idUser}")
-
     public Response getKrs(@PathParam("idUser") long idUser) {
         List<KrsMahasiswaDto> krsMahasiswaDtos = krsMahasiswaBean.getKrs(idUser);
         if (krsMahasiswaDtos.isEmpty())

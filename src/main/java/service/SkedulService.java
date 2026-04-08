@@ -20,7 +20,7 @@ public class SkedulService {
     SkedulBean skedulBean;
 
     @GET
-    @RolesAllowed({"administrator"})
+    @RolesAllowed({"administrator","mahasiswa"})
     public Response getSkedul(@QueryParam("idSkemaKrs") Long idSkemaKrs) {
         if (idSkemaKrs == null) {
             return Response.status(Response.Status.BAD_REQUEST)
