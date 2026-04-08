@@ -37,7 +37,7 @@ public class SkedulService {
     @Path("/{id}")
     public Response removeSkedul(@PathParam("id") Long idSkedul) {
         try {
-            skedulBean.removeSkedul(idSkedul);
+            skedulBean.remove(idSkedul);
             return Response.ok().build();
         } catch (WebApplicationException ex) {
             return Response.status(ex.getResponse().getStatus())
@@ -46,4 +46,12 @@ public class SkedulService {
         }
 
     }
+
+    @POST
+    @RolesAllowed({"administrator"})
+    public Response addSkeduls(List<SkedulDto> dtos){
+        skedulBean.persist(dtos);
+        return Response.ok().entity(dtos).build();
+    }
+
 }
