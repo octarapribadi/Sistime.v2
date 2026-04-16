@@ -2,7 +2,7 @@ package dto;
 
 public class KrsMahasiswaDto {
     Long idKrs, idSkemaKrs;
-    int semester;
+    int semester, tipeSkedul;
     String kodeMatakuliah, namaMatakuliah, namaDosen;
 
     public Long getIdKrs() {
@@ -51,5 +51,13 @@ public class KrsMahasiswaDto {
 
     public void setSemester(int semester) {
         this.semester = semester;
+    }
+
+    public int getTipeSkedul() {
+        return tipeSkedul;
+    }
+
+    public void setTipeSkedul(int tipeSkedul) {
+        this.tipeSkedul = tipeSkedul;
     }
 }

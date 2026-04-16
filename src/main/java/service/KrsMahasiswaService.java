@@ -3,6 +3,9 @@ package service;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import bean.KrsMahasiswaBean;
 import dto.KrsMahasiswaDto;
+import entity.KrsMahasiswa;
+import entity.Skedul;
+import entity.User;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -26,5 +29,18 @@ public class KrsMahasiswaService {
             return Response.status(Response.Status.NOT_FOUND).entity("{}").build();
         else
             return Response.ok(krsMahasiswaDtos).build();
+    }
+
+    @POST
+    @Path("{idUser}")
+    public Response addKrs(@PathParam("idUser")long idUser, KrsMahasiswaDto dto){
+        KrsMahasiswa krsMahasiswa = new KrsMahasiswa();
+        krsMahasiswa.setUser(new User());
+        krsMahasiswa.setSkedul(new Skedul());
+        krsMahasiswa.setTipeSkedul(dto.getTipeSkedul());
+
+        krsMahasiswaBean.persist(krsMahasiswa);
+
+        return Response.ok().build();
     }
 }

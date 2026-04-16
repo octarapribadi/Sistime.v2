@@ -42,4 +42,8 @@ public class KrsMahasiswaBean implements Serializable {
         else
             return Collections.emptyList();
     }
+
+    public void persist(KrsMahasiswa krsMahasiswa){
+
+    }
 }
