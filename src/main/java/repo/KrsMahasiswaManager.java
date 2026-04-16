@@ -79,7 +79,11 @@ public class KrsMahasiswaManager {
         }
     }
 
-    public void persist(Long userId, List<Skedul> skeduls, Integer tipe_skedul) {
+    public void persist(List<KrsMahasiswa> krsMahasiswas){
+        em.persist(krsMahasiswas);
+    }
+
+    public void persist2(Long userId, List<Skedul> skeduls, Integer tipe_skedul) {
         try {
             for (Skedul s : skeduls) {
                 //System.out.println(s.getId());

@@ -1,56 +1,38 @@
 package dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 public class KrsMahasiswaDto {
-    Long idKrs, idSkemaKrs;
-    int semester, tipeSkedul;
-    String kodeMatakuliah, namaMatakuliah, namaDosen;
+    Long id, idUser, idSkedul;
 
-    public Long getIdKrs() {
-        return idKrs;
+    @Min(0)
+    @Max(2)
+    int tipeSkedul;
+    String keterangan;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setIdKrs(Long idKrs) {
-        this.idKrs = idKrs;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getIdSkemaKrs() {
-        return idSkemaKrs;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setIdSkemaKrs(Long idSkemaKrs) {
-        this.idSkemaKrs = idSkemaKrs;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
-    public String getKodeMatakuliah() {
-        return kodeMatakuliah;
+    public Long getIdSkedul() {
+        return idSkedul;
     }
 
-    public void setKodeMatakuliah(String kodeMatakuliah) {
-        this.kodeMatakuliah = kodeMatakuliah;
-    }
-
-    public String getNamaMatakuliah() {
-        return namaMatakuliah;
-    }
-
-    public void setNamaMatakuliah(String namaMatakuliah) {
-        this.namaMatakuliah = namaMatakuliah;
-    }
-
-    public String getNamaDosen() {
-        return namaDosen;
-    }
-
-    public void setNamaDosen(String namaDosen) {
-        this.namaDosen = namaDosen;
-    }
-
-    public int getSemester() {
-        return semester;
-    }
-
-    public void setSemester(int semester) {
-        this.semester = semester;
+    public void setIdSkedul(Long idSkedul) {
+        this.idSkedul = idSkedul;
     }
 
     public int getTipeSkedul() {
@@ -59,5 +41,13 @@ public class KrsMahasiswaDto {
 
     public void setTipeSkedul(int tipeSkedul) {
         this.tipeSkedul = tipeSkedul;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 }

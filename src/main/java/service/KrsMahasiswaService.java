@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/krs")
@@ -33,14 +34,23 @@ public class KrsMahasiswaService {
 
     @POST
     @Path("{idUser}")
-    public Response addKrs(@PathParam("idUser")long idUser, KrsMahasiswaDto dto){
-        KrsMahasiswa krsMahasiswa = new KrsMahasiswa();
-        krsMahasiswa.setUser(new User());
-        krsMahasiswa.setSkedul(new Skedul());
-        krsMahasiswa.setTipeSkedul(dto.getTipeSkedul());
+    public Response addKrs(@PathParam("idUser") long idUser, List<KrsMahasiswaDto> dtos) {
+        List<KrsMahasiswa> krsMahasiswas = new ArrayList<>();
+        dtos.forEach(dto -> {
+            KrsMahasiswa krsMahasiswa = new KrsMahasiswa();
 
-        krsMahasiswaBean.persist(krsMahasiswa);
+            krsMahasiswa.setUser(new User());
+            krsMahasiswa.getUser().setId(dto.getIdUser());
 
-        return Response.ok().build();
+            krsMahasiswa.setSkedul(new Skedul());
+            krsMahasiswa.getSkedul().setId(dto.getIdSkedul());
+
+            krsMahasiswa.setTipeSkedul(dto.getTipeSkedul());
+            krsMahasiswa.setKeterangan(dto.getKeterangan());
+
+            krsMahasiswas.add(krsMahasiswa);
+        });
+        krsMahasiswaBean.persist(krsMahasiswas);
+        return Response.ok().entity(dtos).build();
     }
 }

@@ -142,4 +142,10 @@ public class SkedulManager {
         }
     }
 
+    public List<Skedul> findSkedulByIds(List<Long> skedulIds){
+        TypedQuery<Skedul> query = em.createQuery("select s from Skedul s where s.id in :skedulIds",Skedul.class)
+                .setParameter("skedulIds", skedulIds);
+        return query.getResultList();
+    }
+
 }
