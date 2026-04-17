@@ -11,6 +11,7 @@ import dto.KrsMahasiswaDto;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.NotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class KrsMahasiswaBean implements Serializable {
             return Collections.emptyList();
     }
 
+    @Transactional
     public void persist(List<KrsMahasiswa> krsMahasiswas){
         List<Long>skedulIds = new ArrayList<>();
         krsMahasiswas.forEach(krsMahasiswa -> {

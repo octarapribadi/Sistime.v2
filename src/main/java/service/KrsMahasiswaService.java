@@ -7,6 +7,7 @@ import entity.KrsMahasiswa;
 import entity.Skedul;
 import entity.User;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,6 +25,7 @@ public class KrsMahasiswaService {
 
     @GET
     @Path("{idUser}")
+    @RolesAllowed({"administrator", "mahasiswa"})
     public Response getKrs(@PathParam("idUser") long idUser) {
         List<KrsMahasiswaDto> krsMahasiswaDtos = krsMahasiswaBean.getKrs(idUser);
         if (krsMahasiswaDtos.isEmpty())
@@ -34,6 +36,7 @@ public class KrsMahasiswaService {
 
     @POST
     @Path("{idUser}")
+    @RolesAllowed({"administrator", "mahasiswa"})
     public Response addKrs(@PathParam("idUser") long idUser, List<KrsMahasiswaDto> dtos) {
         List<KrsMahasiswa> krsMahasiswas = new ArrayList<>();
         dtos.forEach(dto -> {

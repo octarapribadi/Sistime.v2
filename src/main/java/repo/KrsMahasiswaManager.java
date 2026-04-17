@@ -80,7 +80,8 @@ public class KrsMahasiswaManager {
     }
 
     public void persist(List<KrsMahasiswa> krsMahasiswas){
-        em.persist(krsMahasiswas);
+        for(KrsMahasiswa krsMahasiswa: krsMahasiswas)
+            em.persist(krsMahasiswa);
     }
 
     public void persist2(Long userId, List<Skedul> skeduls, Integer tipe_skedul) {

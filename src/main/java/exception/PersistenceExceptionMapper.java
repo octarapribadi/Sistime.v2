@@ -13,7 +13,7 @@ public class PersistenceExceptionMapper implements ExceptionMapper<PersistenceEx
     public Response toResponse(PersistenceException ex) {
         return Response
                 .status(Response.Status.CONFLICT)
-                .entity(new ErrorResponse(ex.getMessage()))
+                .entity(new ErrorResponse(ex.getMessage(),Response.Status.CONFLICT.getStatusCode()))
                 .build();
     }
 }
