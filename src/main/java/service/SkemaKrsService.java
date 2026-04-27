@@ -34,33 +34,18 @@ public class SkemaKrsService {
     @POST
     @RolesAllowed({"administrator"})
     public Response setSkemaKrs(@Valid SkemaKrsDto dto) {
-        try {
-            skemaKrsBean.persist(dto);
-            return Response.status(Response.Status.CREATED)
-                    .entity(dto)
-                    .build();
-        } catch (WebApplicationException ex) {
-            return Response
-                    .status(ex.getResponse().getStatus())
-                    .entity(new ErrorResponse(ex.getMessage(),ex.getResponse().getStatus()))
-                    .build();
-        }
+        skemaKrsBean.persist(dto);
+        return Response.status(Response.Status.CREATED)
+                .entity(dto)
+                .build();
     }
 
     @DELETE
     @RolesAllowed({"administrator"})
     @Path("/{id}")
-    public Response removeSkemaKrs(@PathParam("id") Long id){
-        try {
-            skemaKrsBean.remove(id);
-            return Response.ok().build();
-        }
-        catch(WebApplicationException ex){
-            return Response
-                    .status(ex.getResponse().getStatus())
-                    .entity(new ErrorResponse(ex.getMessage(),ex.getResponse().getStatus()))
-                    .build();
-        }
+    public Response removeSkemaKrs(@PathParam("id") Long id) {
+        skemaKrsBean.remove(id);
+        return Response.ok().build();
     }
 
 }

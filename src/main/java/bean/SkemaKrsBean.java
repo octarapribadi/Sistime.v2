@@ -8,6 +8,7 @@ import repo.TahunAjaranManajer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.transaction.TransactionScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.WebApplicationException;
@@ -25,10 +26,10 @@ public class SkemaKrsBean implements Serializable {
     @Inject
     TahunAjaranManajer tahunAjaranManajer;
 
-    public List<SkemaKrsDto> findAll(){
+    public List<SkemaKrsDto> findAll() {
         List<SkemaKrs> skemaKrss = skemaKrsManager.findAllSkemaKrs();
         List<SkemaKrsDto> skemaKrsDtos = new ArrayList<>();
-        for (SkemaKrs sk : skemaKrss){
+        for (SkemaKrs sk : skemaKrss) {
             SkemaKrsDto dto = new SkemaKrsDto();
             dto.setId(sk.getId());
             dto.setIdTahunAjaran(sk.getTahunAjaran().getId());
@@ -40,25 +41,20 @@ public class SkemaKrsBean implements Serializable {
     }
 
     @Transactional
-    public void persist(SkemaKrsDto dto){
-        if(tahunAjaranManajer.findTahunAjaranById(dto.getIdTahunAjaran())==null)
-            throw new WebApplicationException("tahun ajaran tidak ditemukan", Response.Status.NOT_FOUND);
+    public void persist(SkemaKrsDto dto) {
         SkemaKrs skemaKrs = new SkemaKrs();
         TahunAjaran tahunAjaran = new TahunAjaran();
         tahunAjaran.setId(dto.getIdTahunAjaran());
         skemaKrs.setTahunAjaran(tahunAjaran);
-        skemaKrs.setAktif(dto.getAktif()!=null?dto.getAktif():true);
-        skemaKrs.setKeterangan(dto.getKeterangan()!=null?dto.getKeterangan():null);
+        skemaKrs.setAktif(dto.getAktif() != null ? dto.getAktif() : true);
+        skemaKrs.setKeterangan(dto.getKeterangan() != null ? dto.getKeterangan() : null);
         skemaKrsManager.persist(skemaKrs);
         dto.setId(skemaKrs.getId());
     }
 
     @Transactional
-    public void remove(Long idSkemaKrs){
+    public void remove(Long idSkemaKrs) {
         SkemaKrs skemaKrs = skemaKrsManager.findSkemaKrsByid(idSkemaKrs);
-        System.out.println(skemaKrs.getId());
-        if(skemaKrs==null)
-            throw new WebApplicationException("id SkemaKrs tidak ditemukan", Response.Status.NOT_FOUND);
         skemaKrsManager.hapus(skemaKrs);
     }
 }

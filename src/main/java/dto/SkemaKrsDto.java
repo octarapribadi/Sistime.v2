@@ -1,12 +1,12 @@
 package dto;
 
-import javax.validation.constraints.NotNull;
+import validation.TahunAjaranExists;
 
 public class SkemaKrsDto {
     Long id;
+    @TahunAjaranExists
     Long idTahunAjaran;
     Boolean aktif;
-
     String keterangan;
 
     public Long getId() {

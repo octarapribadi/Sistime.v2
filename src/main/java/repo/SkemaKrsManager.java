@@ -14,49 +14,47 @@ public class SkemaKrsManager {
     @PersistenceContext
     EntityManager em;
 
-    public List<SkemaKrs> findAllSkemaKrs(){
+    public List<SkemaKrs> findAllSkemaKrs() {
         Query qry = em.createQuery("select s from SkemaKrs s join fetch s.tahunAjaran t");
         return qry.getResultList();
     }
 
-    public void persist(SkemaKrs skemaKrs){
+    public void persist(SkemaKrs skemaKrs) {
         em.persist(skemaKrs);
     }
 
-    public void nonAktifkanSemuaSkemaKrs(){
+    public void nonAktifkanSemuaSkemaKrs() {
         Query qry = em.createQuery("update SkemaKrs s set s.aktif=0");
         qry.executeUpdate();
     }
 
-    public void hapus(SkemaKrs skemaKrs){
-
+    public void hapus(SkemaKrs skemaKrs) {
         em.remove(em.merge(skemaKrs));
     }
 
-    public void aktifkan(SkemaKrs skemaKrs){
+    public void aktifkan(SkemaKrs skemaKrs) {
         Query qry = em.createQuery("update SkemaKrs s set s.aktif=1 where s.id=?1")
-                .setParameter(1,skemaKrs.getId());
+                .setParameter(1, skemaKrs.getId());
         qry.executeUpdate();
     }
 
-    public void nonAktifkan(SkemaKrs skemaKrs){
+    public void nonAktifkan(SkemaKrs skemaKrs) {
         Query qry = em.createQuery("update SkemaKrs s set s.aktif=0 where s.id=?1")
-                .setParameter(1,skemaKrs.getId());
+                .setParameter(1, skemaKrs.getId());
         qry.executeUpdate();
     }
 
-    public SkemaKrs findSkemaKrsByAktif(){
+    public SkemaKrs findSkemaKrsByAktif() {
         Query qry = em.createQuery("select s from SkemaKrs s join fetch s.tahunAjaran t where s.aktif=true");
-        try{
-            return (SkemaKrs)qry.getSingleResult();
-        }
-        catch(PersistenceException ex){
+        try {
+            return (SkemaKrs) qry.getSingleResult();
+        } catch (PersistenceException ex) {
             return null;
         }
     }
 
-    public SkemaKrs findSkemaKrsByid(Long id){
-        return em.find(SkemaKrs.class,id);
+    public SkemaKrs findSkemaKrsByid(Long id) {
+        return em.find(SkemaKrs.class, id);
     }
 
 }
